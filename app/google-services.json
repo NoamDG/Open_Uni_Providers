@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "389788350675",
+    "firebase_url": "https://tendersopenuni-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tendersopenuni",
+    "storage_bucket": "tendersopenuni.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389788350675:android:45aae41fef3cad02d4fc26",
+        "android_client_info": {
+          "package_name": "com.example.open_uni_providers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZkacExzeylphIWRFAF8N6Cvc03hvEQw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
