@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.Nullable;
 
+import com.example.open_uni_providers.models.Tender;
 import com.google.gson.Gson;
 import com.example.open_uni_providers.models.User;
 
@@ -114,7 +115,9 @@ public class SharedPreferencesUtil
     public static void saveUser(Context context, User user) {
         saveObject(context, "user", user);
     }
-
+    public static void saveTender(Context context, Tender tender) {
+        saveObject(context, "tender", tender);
+    }
     /// Get the user object from shared preferences
     /// @param context The context to use
     /// @return The user object stored in shared preferences
@@ -126,6 +129,7 @@ public class SharedPreferencesUtil
         }
         return getObject(context, "user", User.class);
     }
+
 
     /// Sign out the user by removing user data from shared preferences
     /// @param context The context to use
@@ -152,4 +156,5 @@ public class SharedPreferencesUtil
         }
         return null;
     }
+
 }

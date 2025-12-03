@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.TenderContent;
+import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
+import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -62,7 +65,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         });
         String content = getIntent().getStringExtra("tenderCon");
         btnSubmit.setOnClickListener(v -> {
-            Tender tender = new Tender(tenderNum, TenSubject.getText().toString(), ExpD.getText().toString(), Status.getText().toString(), Winner.getText().toString(), pubD.getText().toString(), content);
+            Tender tender = new Tender(TenSubject.getText().toString(), ExpD.getText().toString(), Status.getText().toString(), Winner.getText().toString(), pubD.getText().toString(), content);
             Log.d(TAG, "onClick: Tender Subject: " + tender.getSubject());
             Log.d(TAG, "onClick: Expire Date: " + tender.getExpireDate());
             Log.d(TAG, "onClick: Status: " + tender.getStatus());
@@ -82,6 +85,37 @@ public class CreateTenderActivity extends AppCompatActivity {
         });
 
 
+    }
+    private void addTender(String subject, String ExpD, String Status, String Winner, String PubD, String content) {
+        Log.d(TAG, "registerUser: Registering user...");
+        Tender tender = new Tender(subject, ExpD, Status, Winner, PubD, content);
+
+
+        /// create a new user object
+        createTenderInDatabase(tender);
+
+
+    }
+
+    private void createTenderInDatabase(Tender tender) {
+        databaseService.createNewTender(tender, new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+                Log.d(TAG, "createUserInDatabase: Redirecting to TenderActivity");
+                /// Redirect to TenderActivity and clear back stack to prevent user from going back to register screen
+                Intent mainIntent = new Intent(CreateTenderActivity.this, TenderActivity.class);
+                /// clear the back stack (clear history) and start the TenderActivity
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(mainIntent);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                Log.e(TAG, "createUserInDatabase: Failed to create tender", e);
+                /// show error message to user
+                Toast.makeText(CreateTenderActivity.this, "Failed to create tender", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
