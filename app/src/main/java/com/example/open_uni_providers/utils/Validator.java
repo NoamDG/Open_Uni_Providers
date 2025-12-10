@@ -27,4 +27,36 @@ public class Validator {
     public static boolean isNameValid(@Nullable String name) {
         return name != null && name.length() >= 3;
     }
+    public static boolean isWinnerValid(@Nullable String wName) {
+        return (wName != null && wName.length() >= 3) || wName.length()==0;
+    }
+    public static boolean isSubjectValid(@Nullable String sub) {
+        return sub != null && sub.length() > 0;
+    }
+    public static boolean isDateValid(@Nullable String date) {
+        if (date.length() != 10)
+            return false;
+
+        // Check slashes
+        if (date.charAt(2) != '/' || date.charAt(5) != '/')
+            return false;
+
+        // Check digits in the right places
+        for (int i = 0; i < date.length(); i++) {
+            if (i == 2 || i == 5) continue; // skip slashes
+            if (!Character.isDigit(date.charAt(i)))
+                return false;
+        }
+
+        return true;
+
+    }
+    public static boolean isStatusValid(@Nullable String stat) {
+        return stat != null && (stat.equals("Active") || stat.equals("Inactive") || stat.equals("Ended"));
+    }
+    public static boolean isContentValid(@Nullable String cont) {
+        return cont != null && cont.length() >=20;
+    }
+
+
 }

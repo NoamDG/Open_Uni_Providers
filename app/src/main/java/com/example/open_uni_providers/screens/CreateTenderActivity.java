@@ -3,12 +3,9 @@ package com.example.open_uni_providers.screens;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,20 +18,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.TenderContent;
-import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.util.Date;
+import com.example.open_uni_providers.utils.Validator;
 
 public class CreateTenderActivity extends AppCompatActivity {
-    static final String TAG = "RegisterActivity";
+    static final String TAG = "CreateTenderActivity";
     EditText TenSubject, Status, Winner, ExpD, pubD;
     String tenderNum;
-    String content="";
+    String tContent="";
     Button btnContent, btnSubmit, btnBack;
 
     String tenderId;
@@ -56,67 +48,78 @@ public class CreateTenderActivity extends AppCompatActivity {
         pubD = findViewById(R.id.PubDate);
         Winner = findViewById(R.id.WinnerName);
         btnContent = findViewById(R.id.btnContent);
-        btnSubmit = findViewById(R.id.btn_submit_create_tender);
         btnBack = findViewById(R.id.btn_back_in_create_tender);
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {
-            Intent intentContent = new Intent(CreateTenderActivity.this, TenderContent.class);
-            startActivity(intentContent);
-        });
-        String content = getIntent().getStringExtra("tenderCon");
-        btnSubmit.setOnClickListener(v -> {
-            Tender tender = new Tender(TenSubject.getText().toString(), ExpD.getText().toString(), Status.getText().toString(), Winner.getText().toString(), pubD.getText().toString(), content);
-            Log.d(TAG, "onClick: Tender Subject: " + tender.getSubject());
-            Log.d(TAG, "onClick: Expire Date: " + tender.getExpireDate());
-            Log.d(TAG, "onClick: Status: " + tender.getStatus());
-            Log.d(TAG, "onClick: Winner Name: " + tender.getWinnerName());
-            Log.d(TAG, "onClick: Publish Date: " + tender.getPublish());
-            Log.d(TAG, "onClick: Content: " + tender.getContent());
-            Log.d(TAG, "onClick: Validating input...");
-            if (!checkInputTender(tender.getSubject(), tender.getExpireDate(), tender.getStatus(), tender.getWinnerName(), tender.getPublish(),tender.getContent() )) {
-                /// stop if input is invalid
+
+            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), Status.getText().toString(), Winner.getText().toString(), pubD.getText().toString())){
                 return;
             }
-            addTender(tender.getSubject(), tender.getExpireDate(), tender.getStatus(), tender.getWinnerName(), tender.getPublish(), tender.getContent());
-
-            Log.d(TAG, "onClick: Registering user...");
-            Intent back_from_create_tender = new Intent(CreateTenderActivity.this, TenderActivity.class);
-            startActivity(back_from_create_tender);
+            Intent intentContent = new Intent(CreateTenderActivity.this, TenderContentCreateActivity.class);
+            intentContent.putExtra("Sub", TenSubject.getText().toString());
+            intentContent.putExtra("ExpD", ExpD.getText().toString());
+            intentContent.putExtra("Status", Status.getText().toString());
+            intentContent.putExtra("Winner", Winner.getText().toString());
+            intentContent.putExtra("PubD", pubD.getText().toString());
+            startActivity(intentContent);
         });
 
 
-    }
-    private void addTender(String subject, String ExpD, String Status, String Winner, String PubD, String content) {
-        Log.d(TAG, "registerUser: Registering user...");
-        Tender tender = new Tender(subject, ExpD, Status, Winner, PubD, content);
-
-
-        /// create a new user object
-        createTenderInDatabase(tender);
-
 
     }
+    private boolean checkInputTender(String subject, String ExpDa, String status, String winner, String PubDa) {
 
-    private void createTenderInDatabase(Tender tender) {
-        databaseService.createNewTender(tender, new DatabaseService.DatabaseCallback<Void>() {
-            @Override
-            public void onCompleted(Void object) {
-                Log.d(TAG, "createUserInDatabase: Redirecting to TenderActivity");
-                /// Redirect to TenderActivity and clear back stack to prevent user from going back to register screen
-                Intent mainIntent = new Intent(CreateTenderActivity.this, TenderActivity.class);
-                /// clear the back stack (clear history) and start the TenderActivity
-                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(mainIntent);
-            }
+        if (!Validator.isSubjectValid(subject)) {
+            Log.e(TAG, "checkInput: Invalid subject");
+            /// show error message to user
+            TenSubject.setError("Please enter subject");
+            /// set focus to subject field
+            TenSubject.requestFocus();
+            return false;
+        }
 
-            @Override
-            public void onFailed(Exception e) {
-                Log.e(TAG, "createUserInDatabase: Failed to create tender", e);
-                /// show error message to user
-                Toast.makeText(CreateTenderActivity.this, "Failed to create tender", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (!Validator.isDateValid(ExpDa)) {
+            Log.e(TAG, "checkInput: Expire Date must be in the format xx/xx/xxxx");
+            /// show error message to user
+            ExpD.setError("Expire Date must be in the format xx/xx/xxxx");
+            /// set focus to ExpD field
+            ExpD.requestFocus();
+            return false;
+        }
+
+        if (!Validator.isStatusValid(status)) {
+            Log.e(TAG, "checkInput: Status must be either: Active, Inactive, or Ended");
+            /// show error message to user
+            Status.setError("Status must be either: Active, Inactive, or Ended");
+            /// set focus to status field
+            Status.requestFocus();
+            return false;
+        }
+
+        if (!Validator.isWinnerValid(winner)) {
+            Log.e(TAG, "checkInput: Winner name must be at least 3 characters long");
+            /// show error message to user
+            Winner.setError("Last name must be at least 3 characters long or blank");
+            /// set focus to winner name field
+            Winner.requestFocus();
+            return false;
+        }
+
+        if (!Validator.isDateValid(PubDa)) {
+            Log.e(TAG, "checkInput: Expire Date must be in the format xx/xx/xxxx");
+            /// show error message to user
+            pubD.setError("Expire Date must be in the format xx/xx/xxxx");
+            /// set focus to publish date field
+            pubD.requestFocus();
+            return false;
+        }
+
+
+
+        Log.d(TAG, "checkInput: Input is valid");
+        return true;
     }
+
 
 }
 

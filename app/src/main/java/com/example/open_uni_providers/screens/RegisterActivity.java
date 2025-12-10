@@ -131,7 +131,7 @@ public class RegisterActivity extends AppCompatActivity {
             Log.e(TAG, "checkInput: ID must be 9 characters long");
             /// show error message to user
             tID.setError("ID must be 9 characters long");
-            /// set focus to phone field
+            /// set focus to ID field
             tID.requestFocus();
             return false;
         }

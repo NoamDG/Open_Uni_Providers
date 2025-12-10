@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.example.open_uni_providers'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.example.open_uni_providers"
-        minSdk 34
-        targetSdk 34
+        minSdk 35
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -37,6 +37,7 @@ dependencies {
     implementation libs.constraintlayout
     implementation libs.firebase.database
     implementation libs.firebase.storage
+    implementation libs.recyclerview
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core

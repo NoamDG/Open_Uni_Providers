@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.open_uni_providers.R;
+import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class LandingActivity extends AppCompatActivity {
     Button BtnReg, BtnLog;
@@ -24,6 +25,14 @@ public class LandingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (SharedPreferencesUtil.isUserLoggedIn(this)) {
+            Intent mainIntent = new Intent(LandingActivity.this, MainActivity.class);
+            /// Clear the back stack (clear history) and start the MainActivity
+            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(mainIntent);
+        }
+
         BtnLog = findViewById(R.id.btn_main_login);
         BtnReg = findViewById(R.id.btn_main_register);
         BtnReg.setOnClickListener(v -> {

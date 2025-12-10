@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Open_Uni_Providers"
         tools:targetApi="31">
         <activity
+            android:name=".screens.ViewContentActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.TenderContentCreateActivity"
             android:exported="false" />
         <activity

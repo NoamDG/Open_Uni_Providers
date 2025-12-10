@@ -337,44 +337,26 @@ public class DatabaseService {
 
 
 
-    //
+    //Tender section
 
     public String generateTenderId() {
         return generateNewId(TENDERS_PATH);
     }
 
     public void createNewTender(@NotNull final Tender tender, @Nullable final DatabaseCallback<Void> callback) {
-        writeData(TENDERS_PATH + "/" + tender.getSubject(), tender, callback);
+        writeData(TENDERS_PATH + "/" + tender.getId(), tender, callback);
     }
 
-    public void getTender(@NotNull final String subject, @NotNull final DatabaseCallback<Tender> callback) {
-        getData(TENDERS_PATH + "/" + subject, Tender.class, callback);
+    public void getTender(@NotNull final String id, @NotNull final DatabaseCallback<Tender> callback) {
+        getData(TENDERS_PATH + "/" + id, Tender.class, callback);
     }
 
     public void getTenderList(@NotNull final DatabaseCallback<List<Tender>> callback) {
         getDataList(TENDERS_PATH, Tender.class, callback);
     }
 
-    public void getTenderBySubject(@NotNull final String subject, @NotNull final DatabaseCallback<Tender> callback) {
-        getTenderList(new DatabaseCallback<List<Tender>>() {
-            @Override
-            public void onCompleted(List<Tender> tenders) {
-                for (Tender tender : tenders) {
-                    if (Objects.equals(tender.getSubject(), subject)) {
-                        callback.onCompleted(tender);
-                        return;
-                    }
-                }
-                callback.onCompleted(null);
-            }
 
-            @Override
-            public void onFailed(Exception e) {
-
-            }
-        });
-    }
-    public void deleteTender(@NotNull final String subject, @Nullable final DatabaseCallback<Void> callback) {
-        deleteData(TENDERS_PATH + "/" + subject, callback);
+    public void deleteTender(@NotNull final String id, @Nullable final DatabaseCallback<Void> callback) {
+        deleteData(TENDERS_PATH + "/" + id, callback);
     }
 }
