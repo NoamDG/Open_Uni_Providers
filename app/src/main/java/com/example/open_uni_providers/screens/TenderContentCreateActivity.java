@@ -15,7 +15,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Tender;
-import com.example.open_uni_providers.models.TenderContent;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.Validator;
 
@@ -86,7 +85,7 @@ public class TenderContentCreateActivity extends AppCompatActivity {
     }
 
     private void createTenderInDatabase(Tender tender) {
-        databaseService.createNewTender(tender, new DatabaseService.DatabaseCallback<Void>() {
+        databaseService.setTender(tender, new DatabaseService.DatabaseCallback<Void>() {
             @Override
             public void onCompleted(Void object) {
                 Log.d(TAG, "createTenderInDatabase: Redirecting to TenderActivity");

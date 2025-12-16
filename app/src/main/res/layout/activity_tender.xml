@@ -5,32 +5,50 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/defapp"
     tools:context=".screens.TenderActivity">
 
+    <!-- Create Tender button (top) -->
     <Button
         android:id="@+id/btn_create_tender"
-        android:layout_width="261dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginBottom="635dp"
-        android:backgroundTint="@color/defbutton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="Create Tender"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/defbutton"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- RecyclerView (middle) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tender_list"
-        android:layout_width="409dp"
-        android:layout_height="633dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@+id/btn_create_tender"
+        app:layout_constraintBottom_toTopOf="@+id/btn_from_tender_to_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="12dp"
         tools:listitem="@layout/item_tender" />
+
+    <!-- Back button (bottom) -->
+    <Button
+        android:id="@+id/btn_from_tender_to_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:backgroundTint="@color/defbutton"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

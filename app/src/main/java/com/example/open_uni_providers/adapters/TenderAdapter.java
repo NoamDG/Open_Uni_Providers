@@ -28,6 +28,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void onLongClick(Tender Tender);
         void onEditWinnerClick(Tender tender);
         void onEditStatusClick(Tender tender);
+        void onApplyClick(Tender tender);
         void onViewContentEmpClick(Tender tender);
         void onViewContentProClick(Tender tender);
 
@@ -69,7 +70,18 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         holder.BtnEditWinner.setOnClickListener(v -> {
             onTenderClickListener.onEditWinnerClick(tender);
         });
-
+        holder.BtnEditStatus.setOnClickListener(v -> {
+            onTenderClickListener.onEditStatusClick(tender);
+        });
+        holder.BtnApply.setOnClickListener(v -> {
+            onTenderClickListener.onApplyClick(tender);
+        });
+        holder.BtnViewContentEmp.setOnClickListener(v -> {
+            onTenderClickListener.onViewContentEmpClick(tender);
+        });
+        holder.BtnViewContentPro.setOnClickListener(v -> {
+            onTenderClickListener.onViewContentProClick(tender);
+        });
 
         if (onTenderClickListener.showEmployeeLayout(tender)) {
             holder.employeeLayout.setVisibility(View.VISIBLE);
@@ -138,8 +150,8 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             this.tvSubject.setText(tender.getTenSubj());
             this.tvPublish.setText(tender.getPubDate());
             this.tvExpire.setText(tender.getPubDate());
-            this.tvWinner.setText(tender.getTenSubj());
-            this.tvStatus.setText(tender.getTenSubj());
+            this.tvWinner.setText(tender.getTenWinner());
+            this.tvStatus.setText(tender.getTenStat());
         }
     }
 }

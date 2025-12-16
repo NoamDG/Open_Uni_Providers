@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     TextView Name;
     User user;
-    Button BtnLogout, btn_tender_red, btn_exempt_red, btn_bidder_list_red, btn_general_terms_red, btn_contact_red;
+    Button BtnLogout,BtnUpdate, btn_tender_red, btn_exempt_red, btn_bidder_list_red, btn_general_terms_red, btn_contact_red;
     String FName, LName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +46,17 @@ public class MainActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
-
+        BtnUpdate = findViewById(R.id.btn_from_main_to_update);
+        BtnUpdate.setOnClickListener(v -> {
+            Intent intentUpdate = new Intent(MainActivity.this, UpdateInfoActivity.class);
+            startActivity(intentUpdate);
+        });
         btn_tender_red = findViewById(R.id.btn_tender_red);
         btn_tender_red.setOnClickListener(v -> {
             Intent intentTender = new Intent(MainActivity.this, TenderActivity.class);
             startActivity(intentTender);
         });
-        btn_exempt_red = findViewById(R.id.btn_exempt_red);
-        btn_exempt_red.setOnClickListener(v -> {
-            Intent intentExempt = new Intent(MainActivity.this, TenderExemptActivity.class);
-            startActivity(intentExempt);
-        });
-        btn_bidder_list_red = findViewById(R.id.btn_bidder_list_red);
-        btn_bidder_list_red.setOnClickListener(v -> {
-            Intent intentBidder = new Intent(MainActivity.this, BidderListActivity.class);
-            startActivity(intentBidder);
-        });
+
         btn_general_terms_red = findViewById(R.id.btn_general_terms_red);
         btn_general_terms_red.setOnClickListener(v -> {
             Intent intentTerms = new Intent(MainActivity.this, GeneralTermsActivity.class);

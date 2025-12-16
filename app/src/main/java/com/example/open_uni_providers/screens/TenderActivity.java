@@ -26,7 +26,7 @@ import java.util.List;
 
 public class TenderActivity extends AppCompatActivity {
     User user;
-    Button BtnCreateTender;
+    Button BtnCreateTender, back;
     boolean isEmployee=false;
     RecyclerView rvList;
     DatabaseService databaseService;
@@ -45,6 +45,11 @@ public class TenderActivity extends AppCompatActivity {
         user = SharedPreferencesUtil.getUser(TenderActivity.this);
         isEmployee = user.isEmployee();
         BtnCreateTender = findViewById(R.id.btn_create_tender);
+        back = findViewById(R.id.btn_from_tender_to_main);
+        back.setOnClickListener(v -> {
+            Intent back = new Intent(TenderActivity.this, MainActivity.class);
+            startActivity(back);
+        });
         rvList = findViewById(R.id.rv_tender_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -61,12 +66,28 @@ public class TenderActivity extends AppCompatActivity {
 
             @Override
             public void onEditWinnerClick(Tender tender) {
-
+                Intent edit_winner = new Intent(TenderActivity.this, EditWinnerActivity.class);
+                edit_winner.putExtra("winner", tender.getTenWinner());
+                edit_winner.putExtra("id", tender.getId());
+                startActivity(edit_winner);
             }
             @Override
             public void onEditStatusClick(Tender tender) {
+                Intent edit_status = new Intent(TenderActivity.this, EditStatusActivity.class);
+                edit_status.putExtra("status", tender.getTenStat());
+                edit_status.putExtra("id", tender.getId());
+                startActivity(edit_status);
+            }
+
+            @Override
+            public void onApplyClick(Tender tender) {
+                Intent apply = new Intent(TenderActivity.this, ApplyActivity.class);
+                apply.putExtra("id", tender.getId());
+                apply.putExtra("subject", tender.getTenSubj());
+                startActivity(apply);
 
             }
+
             @Override
             public void onViewContentEmpClick(Tender tender) {
                 Intent emp_view_content = new Intent(TenderActivity.this, ViewContentActivity.class);

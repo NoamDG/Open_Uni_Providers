@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.open_uni_providers.models.Application;
 import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.User;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ public class DatabaseService {
     private static final String
             USERS_PATH = "users";
     private static final String TENDERS_PATH = "tenders";
+    private static final String APPS_PATH = "applications";
 
 
     public interface DatabaseCallback<T> {
@@ -227,7 +229,7 @@ public class DatabaseService {
     ///            if the operation fails, the callback will receive an exception
     /// @see DatabaseCallback
     /// @see User
-    public void createNewUser(@NotNull final User user, @Nullable final DatabaseCallback<Void> callback) {
+    public void setUser(@NotNull final User user, @Nullable final DatabaseCallback<Void> callback) {
         writeData(USERS_PATH + "/" + user.getId(), user, callback);
     }
 
@@ -343,7 +345,7 @@ public class DatabaseService {
         return generateNewId(TENDERS_PATH);
     }
 
-    public void createNewTender(@NotNull final Tender tender, @Nullable final DatabaseCallback<Void> callback) {
+    public void setTender(@NotNull final Tender tender, @Nullable final DatabaseCallback<Void> callback) {
         writeData(TENDERS_PATH + "/" + tender.getId(), tender, callback);
     }
 
@@ -358,5 +360,29 @@ public class DatabaseService {
 
     public void deleteTender(@NotNull final String id, @Nullable final DatabaseCallback<Void> callback) {
         deleteData(TENDERS_PATH + "/" + id, callback);
+    }
+
+    // end of tender section
+    // start of application section
+
+    public String generateApplicationId() {
+        return generateNewId(APPS_PATH);
+    }
+
+    public void setApplication(@NotNull final Application application, @Nullable final DatabaseCallback<Void> callback) {
+        writeData(APPS_PATH + "/" + application.getId(), application, callback);
+    }
+
+    public void getApplication(@NotNull final String id, @NotNull final DatabaseCallback<Application> callback) {
+        getData(APPS_PATH + "/" + id, Application.class, callback);
+    }
+
+    public void getApplicationList(@NotNull final DatabaseCallback<List<Application>> callback) {
+        getDataList(APPS_PATH, Application.class, callback);
+    }
+
+
+    public void deleteApplication(@NotNull final String id, @Nullable final DatabaseCallback<Void> callback) {
+        deleteData(APPS_PATH + "/" + id, callback);
     }
 }
