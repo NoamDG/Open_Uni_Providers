@@ -1,0 +1,98 @@
+package com.example.open_uni_providers.screens;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.example.open_uni_providers.R;
+import com.example.open_uni_providers.models.Tender;
+import com.example.open_uni_providers.models.User;
+import com.example.open_uni_providers.services.DatabaseService;
+import com.example.open_uni_providers.utils.SharedPreferencesUtil;
+import com.example.open_uni_providers.utils.Validator;
+
+public class UpdateInfoActivity extends AppCompatActivity {
+    EditText Pass, Em;
+    Button Submit, Back;
+    User user;
+    String id;
+    DatabaseService databaseService;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_update_info);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        Pass = findViewById(R.id.etPassword);
+        Em = findViewById(R.id.etEmail);
+        Back = findViewById(R.id.btn_from_update_to_main);
+        user = SharedPreferencesUtil.getUser(UpdateInfoActivity.this);
+        databaseService = DatabaseService.getInstance();
+        Back.setOnClickListener(v -> {
+            Intent back = new Intent(UpdateInfoActivity.this, MainActivity.class);
+            startActivity(back);
+        });
+        Submit = findViewById(R.id.btn_submit_update_info);
+        Pass.setText(user.getPassword());
+        Em.setText(user.getEmail());
+        id = user.getId();
+        Submit.setOnClickListener(v -> {
+            if(!checkInputUpdate(Pass.getText().toString(),Em.getText().toString())) {
+                return;
+            }
+            databaseService.getUser(id, new DatabaseService.DatabaseCallback<User>() {
+                @Override
+                public void onCompleted(User user) {
+                    user.setEmail(Em.getText().toString().trim()+"");
+                    user.setPassword(Pass.getText().toString().trim()+"");
+                    databaseService.setUser(user, new DatabaseService.DatabaseCallback<Void>() {
+                        @Override
+                        public void onCompleted(Void object) {
+
+                        }
+
+                        @Override
+                        public void onFailed(Exception e) {
+
+                        }
+                    });
+                    Intent from_update_to_main = new Intent(UpdateInfoActivity.this, MainActivity.class);
+                    startActivity(from_update_to_main);
+                }
+
+                @Override
+                public void onFailed(Exception e) {
+
+                }
+            });
+        });
+    }
+    private boolean checkInputUpdate(String password, String email){
+        if (!Validator.isEmailValid(email)) {
+            Em.setError("Invalid email address");
+            /// set focus to email field
+            Em.requestFocus();
+            return false;
+        }
+
+        if (!Validator.isPasswordValid(password)) {
+            Pass.setError("Password must be at least 6 characters long");
+            /// set focus to password field
+            Pass.requestFocus();
+            return false;
+        }
+        return true;
+    }
+}
