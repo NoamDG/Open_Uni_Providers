@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createUserInDatabase(User user) {
-        databaseService.createNewUser(user, new DatabaseService.DatabaseCallback<Void>() {
+        databaseService.setUser(user, new DatabaseService.DatabaseCallback<Void>() {
             @Override
             public void onCompleted(Void object) {
                 Log.d(TAG, "createUserInDatabase: User created successfully");
