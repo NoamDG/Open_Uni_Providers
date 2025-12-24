@@ -2,6 +2,7 @@ package com.example.open_uni_providers.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     TextView Name;
     User user;
-    Button BtnLogout,BtnUpdate, btn_tender_red, btn_exempt_red, btn_bidder_list_red, btn_general_terms_red, btn_contact_red;
+    Button BtnLogout,BtnUpdate, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red;
     String FName, LName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentUpdate);
         });
         btn_tender_red = findViewById(R.id.btn_tender_red);
-        btn_tender_red.setOnClickListener(v -> {
-            Intent intentTender = new Intent(MainActivity.this, TenderActivity.class);
-            startActivity(intentTender);
-        });
 
+        btn_app_red = findViewById(R.id.btn_view_applications);
+        btn_app_red.setOnClickListener(v -> {
+            Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);
+            startActivity(intentApp);
+        });
         btn_general_terms_red = findViewById(R.id.btn_general_terms_red);
         btn_general_terms_red.setOnClickListener(v -> {
             Intent intentTerms = new Intent(MainActivity.this, GeneralTermsActivity.class);
@@ -67,5 +69,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intentContact = new Intent(MainActivity.this, ContactActivity.class);
             startActivity(intentContact);
         });
+        if (user.isEmployee()) {
+            btn_app_red.setVisibility(View.VISIBLE);
+            btn_app_red.setOnClickListener(v -> {
+                Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);
+                startActivity(intentApp);
+            });
+        }
+        else {
+            btn_app_red.setVisibility(View.GONE);  // hides it fully
+        }
     }
 }

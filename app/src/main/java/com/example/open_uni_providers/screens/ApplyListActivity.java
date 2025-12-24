@@ -1,0 +1,87 @@
+package com.example.open_uni_providers.screens;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.open_uni_providers.R;
+import com.example.open_uni_providers.adapters.ApplicationAdapter;
+import com.example.open_uni_providers.adapters.TenderAdapter;
+import com.example.open_uni_providers.models.Application;
+import com.example.open_uni_providers.models.Tender;
+import com.example.open_uni_providers.services.DatabaseService;
+
+import java.util.List;
+
+public class ApplyListActivity extends AppCompatActivity {
+    RecyclerView rvList;
+    DatabaseService databaseService;
+    Button back;
+    ApplicationAdapter appAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_apply_list);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+        databaseService = DatabaseService.getInstance();
+        back = findViewById(R.id.btn_from_apply_to_main);
+        back.setOnClickListener(v -> {
+            Intent back = new Intent(ApplyListActivity.this, MainActivity.class);
+            startActivity(back);
+        });
+        rvList = findViewById(R.id.rv_apply_list);
+        rvList.setLayoutManager(new LinearLayoutManager(this));
+
+        appAdapter = new ApplicationAdapter(new ApplicationAdapter.OnApplicationClickListener() {
+            @Override
+            public void onClick(Application app) {
+
+            }
+
+            @Override
+            public void onLongClick(Application app) {
+
+            }
+            @Override
+            public void onViewContentClick(Application apply) {
+                Intent view_content = new Intent(ApplyListActivity.this, ViewApplicationActivity.class);
+                view_content.putExtra("content", apply.getContent());
+                startActivity(view_content);
+            }
+        });
+        rvList.setAdapter(appAdapter);
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        databaseService.getApplicationList(new DatabaseService.DatabaseCallback<List<Application>>() {
+            @Override
+            public void onCompleted(List<Application> apps) {
+                Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "applications:" + apps.size());
+                appAdapter.setApplicationList(apps);
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+    }
+}

@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Open_Uni_Providers"
         tools:targetApi="31">
         <activity
+            android:name=".screens.ViewApplicationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.ApplyListActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.UpdateInfoActivity"
             android:exported="false" />
         <activity
