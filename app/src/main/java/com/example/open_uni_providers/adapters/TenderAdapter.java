@@ -1,6 +1,5 @@
 package com.example.open_uni_providers.adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Tender;
-import com.example.open_uni_providers.models.User;
-import com.example.open_uni_providers.screens.ViewContentActivity;
-import com.example.open_uni_providers.services.DatabaseService;
-import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +21,18 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void onClick(Tender Tender);
         void onLongClick(Tender Tender);
         void onEditWinnerClick(Tender tender);
-        void onEditStatusClick(Tender tender);
         void onApplyClick(Tender tender);
         void onViewContentEmpClick(Tender tender);
         void onViewContentProClick(Tender tender);
 
         boolean showProviderLayout(Tender tender);
         boolean showEmployeeLayout(Tender tender);
+        // Note: Removed onEditStatusClick from interface if it was there
     }
 
     private final List<Tender> tenderList;
     private final OnTenderClickListener onTenderClickListener;
+
     public TenderAdapter(@NonNull final OnTenderClickListener onTenderClickListener) {
         tenderList = new ArrayList<>();
         this.onTenderClickListener = onTenderClickListener;
@@ -57,44 +52,31 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
 
         holder.setInfo(tender);
 
-
-        holder.itemView.setOnClickListener(v -> {
-            onTenderClickListener.onClick(tender);
-        });
+        holder.itemView.setOnClickListener(v -> onTenderClickListener.onClick(tender));
 
         holder.itemView.setOnLongClickListener(v -> {
             onTenderClickListener.onLongClick(tender);
             return true;
         });
 
-        holder.BtnEditWinner.setOnClickListener(v -> {
-            onTenderClickListener.onEditWinnerClick(tender);
-        });
-        holder.BtnEditStatus.setOnClickListener(v -> {
-            onTenderClickListener.onEditStatusClick(tender);
-        });
-        holder.BtnApply.setOnClickListener(v -> {
-            onTenderClickListener.onApplyClick(tender);
-        });
-        holder.BtnViewContentEmp.setOnClickListener(v -> {
-            onTenderClickListener.onViewContentEmpClick(tender);
-        });
-        holder.BtnViewContentPro.setOnClickListener(v -> {
-            onTenderClickListener.onViewContentProClick(tender);
-        });
+        holder.BtnEditWinner.setOnClickListener(v -> onTenderClickListener.onEditWinnerClick(tender));
+        holder.BtnApply.setOnClickListener(v -> onTenderClickListener.onApplyClick(tender));
+        holder.BtnViewContentEmp.setOnClickListener(v -> onTenderClickListener.onViewContentEmpClick(tender));
+        holder.BtnViewContentPro.setOnClickListener(v -> onTenderClickListener.onViewContentProClick(tender));
+
+        // Note: Removed holder.BtnEditStatus.setOnClickListener logic from here
 
         if (onTenderClickListener.showEmployeeLayout(tender)) {
             holder.employeeLayout.setVisibility(View.VISIBLE);
         } else {
             holder.employeeLayout.setVisibility(View.GONE);
         }
+
         if (onTenderClickListener.showProviderLayout(tender)) {
             holder.providerLayout.setVisibility(View.VISIBLE);
         } else {
             holder.providerLayout.setVisibility(View.GONE);
         }
-
-
     }
 
     @Override
@@ -112,6 +94,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         tenderList.add(Tender);
         notifyItemInserted(tenderList.size() - 1);
     }
+
     public void updateTender(Tender Tender) {
         int index = tenderList.indexOf(Tender);
         if (index == -1) return;
@@ -129,7 +112,9 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View employeeLayout, providerLayout;
         TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus;
-        public Button BtnEditWinner, BtnViewContentEmp, BtnViewContentPro, BtnApply, BtnEditStatus;
+        // REMOVED BtnEditStatus from here
+        public Button BtnEditWinner, BtnViewContentEmp, BtnViewContentPro, BtnApply;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             employeeLayout = itemView.findViewById(R.id.item_tender_employee_layout);
@@ -143,13 +128,13 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             BtnViewContentEmp = itemView.findViewById(R.id.btn_view_content_emp);
             BtnViewContentPro = itemView.findViewById(R.id.btn_view_content_pro);
             BtnApply = itemView.findViewById(R.id.btn_apply);
-            BtnEditStatus = itemView.findViewById(R.id.btn_edit_status);
+            // REMOVED findViewById for btn_edit_status
         }
 
         void setInfo(Tender tender) {
             this.tvSubject.setText(tender.getTenSubj());
             this.tvPublish.setText(tender.getPubDate());
-            this.tvExpire.setText(tender.getPubDate());
+            this.tvExpire.setText(tender.getExpDate()); // Fixed: was using getPubDate twice
             this.tvWinner.setText(tender.getTenWinner());
             this.tvStatus.setText(tender.getTenStat());
         }

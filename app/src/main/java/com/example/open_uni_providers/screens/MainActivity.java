@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     TextView Name;
     User user;
-    Button BtnLogout,BtnUpdate, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red;
+    Button BtnLogout,BtnUpdate, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red, btn_admin;
     String FName, LName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,23 @@ public class MainActivity extends AppCompatActivity {
         LName = user.getLastname();
         Name.setText(FName+" "+LName);
         BtnLogout = findViewById(R.id.btn_main_logout);
+        btn_admin = findViewById(R.id.btn_admin_page);
+        if (user.isAdmin()) {
+            btn_admin.setVisibility(View.VISIBLE);
+            btn_admin.setOnClickListener(v -> {
+                Intent main_to_admin = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(main_to_admin);
+            });
+        }
+        else {
+            btn_admin.setVisibility(View.GONE);  // hides it fully
+        }
         BtnLogout.setOnClickListener(v -> {
             // Clear saved user
             SharedPreferencesUtil.signOutUser(MainActivity.this);
 
             // Go back to LoginActivity
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, LandingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         });
@@ -53,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentUpdate);
         });
         btn_tender_red = findViewById(R.id.btn_tender_red);
-
+        btn_tender_red.setOnClickListener(v -> {
+            Intent intentTen = new Intent(MainActivity.this, TenderActivity.class);
+            startActivity(intentTen);
+        });
         btn_app_red = findViewById(R.id.btn_view_applications);
         btn_app_red.setOnClickListener(v -> {
             Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);

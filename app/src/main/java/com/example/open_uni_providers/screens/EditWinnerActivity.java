@@ -62,6 +62,34 @@ public class EditWinnerActivity extends AppCompatActivity {
 
                         }
                     });
+                    if(!winner.getText().toString().equals("")){
+                        tender.setTenStat("Inactive");
+                        databaseService.setTender(tender, new DatabaseService.DatabaseCallback<Void>() {
+                            @Override
+                            public void onCompleted(Void object) {
+
+                            }
+
+                            @Override
+                            public void onFailed(Exception e) {
+
+                            }
+                        });
+                    }
+                    else{
+                        tender.setTenStat("Active");
+                        databaseService.setTender(tender, new DatabaseService.DatabaseCallback<Void>() {
+                            @Override
+                            public void onCompleted(Void object) {
+
+                            }
+
+                            @Override
+                            public void onFailed(Exception e) {
+
+                            }
+                        });
+                    }
                     Intent from_winner_to_tender = new Intent(EditWinnerActivity.this, TenderActivity.class);
                     startActivity(from_winner_to_tender);
                 }

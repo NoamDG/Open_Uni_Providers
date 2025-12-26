@@ -3,16 +3,17 @@ package com.example.open_uni_providers.models;
 import androidx.annotation.NonNull;
 
 public class Application {
-    String id, fName, lName, content;
+    String id, fName, lName, content,subject;
 
     public Application() {
     }
 
-    public Application(String id, String fName, String lName, String content) {
+    public Application(String id, String fName, String lName, String content, String subject) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.content = content;
+        this.subject=subject;
     }
 
     public String getId() {
@@ -28,6 +29,9 @@ public class Application {
     }
     public String getlName() {
         return lName;
+    }
+    public String getSubject() {
+        return subject;
     }
     public String getContent() {
         return content;

@@ -20,7 +20,7 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class CreateTenderActivity extends AppCompatActivity {
     static final String TAG = "CreateTenderActivity";
-    EditText TenSubject, Status, Winner, ExpD, pubD;
+    EditText TenSubject, ExpD, pubD;
     String tenderNum;
     String tContent="";
     Button btnContent, btnSubmit, btnBack;
@@ -37,25 +37,29 @@ public class CreateTenderActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String Status="Active";
         TenSubject = findViewById(R.id.TenderSubject);
         databaseService = DatabaseService.getInstance();
-        Status = findViewById(R.id.Status);
+        String Winner = "";
         ExpD = findViewById(R.id.ExpDate);
         pubD = findViewById(R.id.PubDate);
-        Winner = findViewById(R.id.WinnerName);
         btnContent = findViewById(R.id.btnContent);
         btnBack = findViewById(R.id.btn_back_in_create_tender);
+        btnBack.setOnClickListener(v -> {
+            Intent back = new Intent(CreateTenderActivity.this, TenderActivity.class);
+            startActivity(back);
+        });
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {
 
-            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), Status.getText().toString(), Winner.getText().toString(), pubD.getText().toString())){
+            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), pubD.getText().toString())){
                 return;
             }
             Intent intentContent = new Intent(CreateTenderActivity.this, TenderContentCreateActivity.class);
             intentContent.putExtra("Sub", TenSubject.getText().toString());
             intentContent.putExtra("ExpD", ExpD.getText().toString());
-            intentContent.putExtra("Status", Status.getText().toString());
-            intentContent.putExtra("Winner", Winner.getText().toString());
+            intentContent.putExtra("Status", Status);
+            intentContent.putExtra("Winner", Winner);
             intentContent.putExtra("PubD", pubD.getText().toString());
             startActivity(intentContent);
         });
@@ -63,7 +67,7 @@ public class CreateTenderActivity extends AppCompatActivity {
 
 
     }
-    private boolean checkInputTender(String subject, String ExpDa, String status, String winner, String PubDa) {
+    private boolean checkInputTender(String subject, String ExpDa, String PubDa) {
 
         if (!Validator.isSubjectValid(subject)) {
             Log.e(TAG, "checkInput: Invalid subject");
@@ -80,24 +84,6 @@ public class CreateTenderActivity extends AppCompatActivity {
             ExpD.setError("Expire Date must be in the format xx/xx/xxxx");
             /// set focus to ExpD field
             ExpD.requestFocus();
-            return false;
-        }
-
-        if (!Validator.isStatusValid(status)) {
-            Log.e(TAG, "checkInput: Status must be either: Active, Inactive, or Ended");
-            /// show error message to user
-            Status.setError("Status must be either: Active, Inactive, or Ended");
-            /// set focus to status field
-            Status.requestFocus();
-            return false;
-        }
-
-        if (!Validator.isWinnerValid(winner)) {
-            Log.e(TAG, "checkInput: Winner name must be at least 3 characters long");
-            /// show error message to user
-            Winner.setError("Last name must be at least 3 characters long or blank");
-            /// set focus to winner name field
-            Winner.requestFocus();
             return false;
         }
 

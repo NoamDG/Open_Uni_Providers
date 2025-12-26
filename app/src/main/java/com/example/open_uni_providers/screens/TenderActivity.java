@@ -71,13 +71,6 @@ public class TenderActivity extends AppCompatActivity {
                 edit_winner.putExtra("id", tender.getId());
                 startActivity(edit_winner);
             }
-            @Override
-            public void onEditStatusClick(Tender tender) {
-                Intent edit_status = new Intent(TenderActivity.this, EditStatusActivity.class);
-                edit_status.putExtra("status", tender.getTenStat());
-                edit_status.putExtra("id", tender.getId());
-                startActivity(edit_status);
-            }
 
             @Override
             public void onApplyClick(Tender tender) {

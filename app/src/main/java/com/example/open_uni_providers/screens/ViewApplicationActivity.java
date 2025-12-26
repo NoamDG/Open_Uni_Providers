@@ -30,7 +30,7 @@ public class ViewApplicationActivity extends AppCompatActivity {
         String content = getIntent().getStringExtra("content");
         tvContent = findViewById(R.id.tv_application);
         tvContent.setText(content);
-        BtnBack = findViewById(R.id.btn_from_view_content_to_tender);
+        BtnBack = findViewById(R.id.btn_from_view_content_to_apply_list);
         BtnBack.setOnClickListener(v -> {
             Intent intent = new Intent(ViewApplicationActivity.this, ApplyListActivity.class);
             startActivity(intent);

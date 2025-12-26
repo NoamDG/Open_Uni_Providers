@@ -1,3 +1,57 @@
 <resources>
     <string name="app_name">Open_Uni_Providers</string>
+    <string name="terms_text">
+        General Terms and Conditions\n\n
+        Welcome to the Tenders Website. This site is managed and operated by the Open University of Israel, located at 1 University Road, Ra\'anana (hereinafter: \"The Open University\"). Use of this website, including the content and various services provided herein, signifies your agreement to these terms; therefore, you are requested to read them carefully. On this site, you will find links to content whose use is subject, in addition to these general terms, to specific online agreements relevant to them.\n\n
+
+        These terms apply to the use of content included on the site via any computer or other communication device (such as cellular phones, handheld computers, etc.). Furthermore, they apply to the use of the site whether via the internet or any other network or means of communication.\n\n
+
+        The terms of use are formulated in the masculine gender for convenience only, but they naturally apply to women as well.\n\n
+
+        In these terms, the term \"Content\" includes any verbal, visual, audio, or audio-visual content, or any combination thereof, as well as their design, processing, editing, distribution, and presentation, including (but not limited to): any image, photograph, illustration, animation, chart, character, simulation, sample, video, audio file, and music file; as well as all technological tools used to operate the site, including software, files, computer code (including Source Code), applications, formats, protocols, databases, interfaces, and any character, sign, symbol, or icon.\n\n
+
+        Copyright\n
+        The content displayed on the site may be used solely for purposes related to the tenders appearing therein, and for the purposes of teaching, study, and research only. Intellectual property rights, including copyrights and moral rights in the content appearing on this site, are owned by the Open University.\n\n
+
+        Intellectual property rights, including copyrights in the site, its planning, design, the technological tools used by the site (including conversion products for the online dimension), and the source code, are owned by the Open University.\n\n
+
+        No part of the content appearing on this site may be reproduced, copied, photographed, recorded, translated, stored in a database, transmitted, or received in any way or by any electronic, optical, mechanical, or other means. Furthermore, no commercial use of any kind may be made of the site\'s content, as defined above, in whole or in part, except after receiving explicit written permission from the Open University.\n\n
+
+        You may not disrupt or interfere with the service, the site, the servers, or the networks connected to the service or the site.\n\n
+
+        You may not publish, email, or otherwise transmit any material that includes viruses or software code, files, or programs designed to disrupt, cancel, or limit the functionality of the site\'s software, computer hardware, or the telecommunications equipment of users.\n\n
+
+        In any case of copying or using content found on the site and displaying it outside the site, as permitted under the terms of these regulations, there is an obligation to state the source of the publication and the name of the site.\n\n
+
+        Links\n
+        If this service contains links to other sites, the following provisions shall apply to the use of these links, without derogating from the other provisions of the Terms of Use. The links are intended for the convenience of the user only.\n\n
+
+        Regarding links to external sites not belonging to the Open University (Third-Party Sites): Unless otherwise stated on this site, there is no legal or commercial relationship between the Open University and the owners of Third-Party Sites, and the Open University has no control over or rights to the material found on those sites.\n\n
+
+        The Open University is not responsible for the content of material found on Third-Party Sites. Links to Third-Party Sites shall not be interpreted as an endorsement, approval, recommendation, or preference by the Open University for those linked sites, including documents and any other material found therein, the operators of the sites, or the products displayed therein.\n\n
+
+        Deep linking from within the site is prohibited, except subject to the following conditions:\n\n
+
+        The link is made in accordance with the \"Copyright\" section above.\n\n
+
+        The deep link shall be to the site page in its entirety and as it appears on the site, such that it can be viewed and used in a manner identical to its use and viewing on the site.\n\n
+
+        Liability\n
+        The Open University shall not bear responsibility for the suitability of the content display to the user\'s needs. Furthermore, the Open University shall not bear responsibility for errors or inaccuracies in the material presented on the site.\n\n
+
+        The Open University shall not bear responsibility for changes made to the material presented on the site by the user or by any third party. The user alone shall bear responsibility for the manner in which they use the site.\n\n
+
+        The Open University shall not bear responsibility for any damage caused to the user or any third party as a direct or indirect result of using the site, including damage caused due to the use of software applications downloaded directly through the service or activated as a result of using the site, including Java, JavaScript, and Active-X applications. For the purpose of this section, the \"Open University\" includes its employees and representatives.\n\n
+
+        Privacy Policy\n
+        The Open University shall be entitled to use the details provided by a user during registration or joining/using the site, as well as any information collected about the user\'s usage patterns by tracking site usage (including through COOKIES) for the purpose of improving services, information, and content.\n\n
+
+        Information Security\n
+        The Open University will take all reasonable steps to secure the information provided by the user. However, the Open University cannot perfectly secure the information and communication systems against unauthorized intrusions and prohibited use by third parties. Therefore, the Open University shall not bear any responsibility, direct or indirect, in cases of disclosure and use of information provided by the user resulting, directly or indirectly, from unauthorized intrusions by others or as a result of acts and/or omissions beyond the control of the Open University.\n\n
+
+        Law and Jurisdiction\n
+        The use of the site shall be governed solely by the laws of the State of Israel. The sole and exclusive place of jurisdiction for any matter arising from the use of the site, including services provided through registration and the digital newspaper, shall be exclusively in the competent courts in Tel Aviv.\n\n
+
+        I have read the Terms of Use of the site, I agree to them, and I confirm that I will act in accordance with them.
+    </string>
 </resources>

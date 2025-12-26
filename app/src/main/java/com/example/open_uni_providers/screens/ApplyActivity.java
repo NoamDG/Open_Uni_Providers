@@ -40,6 +40,7 @@ public class ApplyActivity extends AppCompatActivity {
         back = findViewById(R.id.btn_back_from_appeal_to_tender);
         user = SharedPreferencesUtil.getUser(ApplyActivity.this);
         databaseService = DatabaseService.getInstance();
+        String subject = getIntent().getStringExtra("subject");
         back.setOnClickListener(v -> {
             Intent back = new Intent(ApplyActivity.this, TenderActivity.class);
             startActivity(back);
@@ -49,7 +50,7 @@ public class ApplyActivity extends AppCompatActivity {
                 /// stop if input is invalid
                 return;
             }
-            addApplication(user.getFirstname(), user.getLastname(), content.getText().toString());
+            addApplication(user.getFirstname(), user.getLastname(), content.getText().toString(), subject);
             Intent back_from_create_application = new Intent(ApplyActivity.this, TenderActivity.class);
             startActivity(back_from_create_application);
         });
@@ -67,9 +68,9 @@ public class ApplyActivity extends AppCompatActivity {
 
         return true;
     }
-    private void addApplication(String fName, String lName, String content) {
+    private void addApplication(String fName, String lName, String content, String subject) {
         String id = databaseService.generateTenderId();
-        Application application= new Application(id, fName, lName, content);
+        Application application= new Application(id, fName, lName, content, subject);
         createApplicationInDatabase(application);
     }
 

@@ -54,6 +54,9 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
             onApplicationClickListener.onLongClick(application);
             return true;
         });
+        holder.BtnViewContent.setOnClickListener(v -> {
+            onApplicationClickListener.onViewContentClick(application);
+        });
     }
 
     @Override
@@ -62,8 +65,8 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
     }
 
     public void setApplicationList(List<Application> applicationList) {
-        applicationList.clear();
-        applicationList.addAll(applicationList);
+        this.applicationList.clear();
+        this.applicationList.addAll(applicationList);
         notifyDataSetChanged();
     }
 
@@ -86,16 +89,18 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFName, tvLName;
+        TextView tvFName, tvLName, subject;
         public Button BtnViewContent;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            subject = itemView.findViewById(R.id.tv_item_app_sub);
             tvFName = itemView.findViewById(R.id.tv_item_app_fname);
-            tvLName = itemView.findViewById(R.id.tv_item_app_fname);
+            tvLName = itemView.findViewById(R.id.tv_item_app_lname);
             BtnViewContent = itemView.findViewById(R.id.btn_view_application);
         }
 
         void setInfo(Application application) {
+            this.subject.setText(application.getSubject());
             this.tvFName.setText(application.getfName());
             this.tvLName.setText(application.getlName());
         }

@@ -1,6 +1,9 @@
 package com.example.open_uni_providers.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 
 public class GeneralTermsActivity extends AppCompatActivity {
+    Button back;
+    TextView Terms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,13 @@ public class GeneralTermsActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        Terms = findViewById(R.id.tvTermsContent);
+        Terms.setText(R.string.terms_text);
+        back = findViewById(R.id.btn_terms_to_main);
+        back.setOnClickListener(v -> {
+            Intent intent =new Intent(GeneralTermsActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }
