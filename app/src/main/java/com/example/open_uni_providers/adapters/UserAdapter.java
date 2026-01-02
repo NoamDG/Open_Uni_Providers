@@ -1,5 +1,5 @@
 package com.example.open_uni_providers.adapters;
-
+import com.example.open_uni_providers.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +48,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             onUserClickListener.onLongClick(user);
             return true;
         });
-
-        // Mapping your layout buttons to your interface methods
         holder.BtnUpdateUserInfo.setOnClickListener(v -> onUserClickListener.onUpdateUserClick(user));
         holder.BtnDeleteUser.setOnClickListener(v -> onUserClickListener.onDeleteUserClick(user));
         holder.BtnMakeAdmin.setOnClickListener(v -> onUserClickListener.onMakeUserAdminClick(user));
@@ -76,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFName, tvLName, tvEmail, tvPassword, tvID;
+        TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge;
         Button BtnUpdateUserInfo, BtnDeleteUser, BtnMakeAdmin;
 
         public ViewHolder(@NonNull View itemView) {
@@ -89,6 +86,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             BtnUpdateUserInfo = itemView.findViewById(R.id.btn_update_user);
             BtnDeleteUser = itemView.findViewById(R.id.btn_delete_user);
             BtnMakeAdmin = itemView.findViewById(R.id.btn_make_admin);
+            tvAdminBadge = itemView.findViewById(R.id.tv_admin_badge);
         }
 
         void setInfo(User user) {
@@ -98,6 +96,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             tvEmail.setText(user.getEmail());
             // Masking password for security in the list
             tvPassword.setText("********");
+            if (user.isAdmin()){
+                tvAdminBadge.setVisibility(View.VISIBLE);
+                BtnMakeAdmin.setVisibility(View.GONE);
+
+            }
+            else{
+                tvAdminBadge.setVisibility(View.GONE);
+                BtnMakeAdmin.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

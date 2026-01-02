@@ -20,7 +20,7 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class TenderContentCreateActivity extends AppCompatActivity {
     EditText content;
-    Button btnSubmit;
+    Button btnSubmit, btnBack;
     DatabaseService databaseService;
     static final String TAG = "TenderContentCreateActivity";
 
@@ -41,6 +41,11 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         String Winner = getIntent().getStringExtra("Winner");
         String PubD = getIntent().getStringExtra("PubD");
         content = findViewById(R.id.content_text);
+        btnBack = findViewById(R.id.btn_back_to_create_tender);
+        btnBack.setOnClickListener(v -> {
+            Intent back = new Intent(TenderContentCreateActivity.this, CreateTenderActivity.class);
+            startActivity(back);
+        });
         btnSubmit = findViewById(R.id.btn_submit_create_tender_content);
         btnSubmit.setOnClickListener(v -> {
 

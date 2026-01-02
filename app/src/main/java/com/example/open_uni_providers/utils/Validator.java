@@ -33,26 +33,24 @@ public class Validator {
     public static boolean isSubjectValid(@Nullable String sub) {
         return sub != null && sub.length() > 0;
     }
-    public static boolean isDateValid(@Nullable String date) {
-        if (date.length() != 10)
-            return false;
+    public static boolean isDateValid(@Nullable String dateP, @Nullable String dateE) {
+        if (dateP == null || dateE == null) return false;
 
-        // Check slashes
-        if (date.charAt(2) != '/' || date.charAt(5) != '/')
-            return false;
+        try {
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+            sdf.setLenient(false);
 
-        // Check digits in the right places
-        for (int i = 0; i < date.length(); i++) {
-            if (i == 2 || i == 5) continue; // skip slashes
-            if (!Character.isDigit(date.charAt(i)))
+            java.util.Date dExp = sdf.parse(dateE);
+            java.util.Date dPub = sdf.parse(dateP);
+
+            if (dExp.before(dPub)) {
                 return false;
+            }
+
+        } catch (java.text.ParseException e) {
+            return false;
         }
-
         return true;
-
-    }
-    public static boolean isStatusValid(@Nullable String stat) {
-        return stat != null && (stat.equals("Active") || stat.equals("Inactive") || stat.equals("Ended"));
     }
     public static boolean isContentValid(@Nullable String cont) {
         return cont != null && cont.length() >=20;

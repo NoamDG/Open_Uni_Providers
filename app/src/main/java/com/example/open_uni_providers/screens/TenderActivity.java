@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,43 +56,48 @@ public class TenderActivity extends AppCompatActivity {
 
         tenderAdapter = new TenderAdapter(new TenderAdapter.OnTenderClickListener() {
             @Override
-            public void onClick(Tender Tender) {
+            public void onClick(Tender tender) {
+                Intent viewContent = new Intent(TenderActivity.this, ViewContentActivity.class);
+
+                if (user.isEmployee()) {
+                    viewContent.putExtra("content_emp", tender.getContent());
+                } else {
+                    viewContent.putExtra("content_pro", tender.getContent());
+                }
+                startActivity(viewContent);
 
             }
 
             @Override
-            public void onLongClick(Tender Tender) {
+            public void onLongClick(Tender tender) {
 
             }
 
             @Override
             public void onEditWinnerClick(Tender tender) {
-                Intent edit_winner = new Intent(TenderActivity.this, EditWinnerActivity.class);
-                edit_winner.putExtra("winner", tender.getTenWinner());
-                edit_winner.putExtra("id", tender.getId());
-                startActivity(edit_winner);
+                if(tender.getTenStat().equals("Active") || tender.getTenStat().equals("Inactive")){
+                    Intent edit_winner = new Intent(TenderActivity.this, EditWinnerActivity.class);
+                    edit_winner.putExtra("winner", tender.getTenWinner());
+                    edit_winner.putExtra("id", tender.getId());
+                    startActivity(edit_winner);
+                }
+                else{
+                    Toast.makeText(TenderActivity.this, "This tender is expired or inactive", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onApplyClick(Tender tender) {
-                Intent apply = new Intent(TenderActivity.this, ApplyActivity.class);
-                apply.putExtra("id", tender.getId());
-                apply.putExtra("subject", tender.getTenSubj());
-                startActivity(apply);
+                if(tender.getTenStat().equals("Active")){
+                    Intent apply = new Intent(TenderActivity.this, ApplyActivity.class);
+                    apply.putExtra("id", tender.getId());
+                    apply.putExtra("subject", tender.getTenSubj());
+                    startActivity(apply);
+                }
+                else{
+                    Toast.makeText(TenderActivity.this, "This tender is expired or inactive", Toast.LENGTH_LONG).show();
+                }
 
-            }
-
-            @Override
-            public void onViewContentEmpClick(Tender tender) {
-                Intent emp_view_content = new Intent(TenderActivity.this, ViewContentActivity.class);
-                emp_view_content.putExtra("content_emp", tender.getContent());
-                startActivity(emp_view_content);
-            }
-            @Override
-            public void onViewContentProClick(Tender tender) {
-                Intent pro_view_content = new Intent(TenderActivity.this, ViewContentActivity.class);
-                pro_view_content.putExtra("content_pro", tender.getContent());
-                startActivity(pro_view_content);
 
             }
 

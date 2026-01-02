@@ -13,7 +13,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-black"
         android:text="New Application"
         android:textColor="#212121"
@@ -27,20 +27,21 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="20dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp"
-        app:strokeColor="#DDDDDD"
-        app:strokeWidth="1dp"
-        android:backgroundTint="@color/defapp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_submit_application"
+        android:backgroundTint="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:strokeColor="#DDDDDD"
+        app:strokeWidth="1dp">
 
         <EditText
             android:id="@+id/application"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@null"
             android:gravity="top|start"
             android:hint="Write your application details here..."
             android:inputType="textMultiLine"
@@ -48,35 +49,45 @@
             android:textSize="16sp" />
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
-        android:id="@+id/btn_submit_application"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/specbutton"
-        android:text="Submit"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_back_from_appeal_to_tender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <View
+        android:id="@+id/footer_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="#33000000"
+        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
 
-    <Button
-        android:id="@+id/btn_back_from_appeal_to_tender"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/defbutton"
-        android:text="Back"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_submit_application"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/specbutton"
+            android:text="Submit Application"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/btn_back_from_appeal_to_tender"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/defbutton"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

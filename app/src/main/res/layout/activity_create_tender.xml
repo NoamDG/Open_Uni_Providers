@@ -9,48 +9,47 @@
     android:background="@color/defapp"
     tools:context=".screens.CreateTenderActivity">
 
+    <TextView
+        android:id="@+id/titleCreateTender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Create Tender"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/btnContent"
+        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/titleCreateTender">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="24dp">
-
-            <TextView
-                android:id="@+id/titleCreateTender"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Create Tender"
-                android:textColor="@color/black"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutTenderSubject"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:hint="Tender Subject"
+                app:boxBackgroundColor="@android:color/white"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/titleCreateTender">
+                app:boxCornerRadiusTopStart="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/TenderSubject"
@@ -60,81 +59,68 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutPubDate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Publish Date"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutTenderSubject">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/PubDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="date" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutExpDate"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:hint="Expire Date"
+                app:boxBackgroundColor="@android:color/white"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutPubDate">
+                app:endIconMode="custom"
+                app:endIconDrawable="@android:drawable/ic_menu_my_calendar">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ExpDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="date" />
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnContent"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="8dp"
-        android:text="Content of Tender"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        app:backgroundTint="@color/specbutton"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_back_in_create_tender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <View
+        android:id="@+id/footer_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33000000"
+        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
 
-    <Button
-        android:id="@+id/btn_back_in_create_tender"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Back"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:backgroundTint="@color/defbutton"
-        app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnContent"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="8dp"
+            android:text="Content of Tender"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            app:backgroundTint="@color/specbutton"
+            app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/btn_back_in_create_tender"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Back"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            app:backgroundTint="@color/defbutton"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

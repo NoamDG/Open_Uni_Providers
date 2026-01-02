@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +57,7 @@ public class AdminActivity extends AppCompatActivity {
             }
             @Override
             public void onMakeUserAdminClick(User user) {
-                if(!user.isAdmin()){
+                if(!user.isAdmin() && user.isEmployee()){
                     new android.app.AlertDialog.Builder(AdminActivity.this)
                             .setTitle("Make User Admin")
                             .setMessage("Are you sure you want to make " + user.getFirstname() + " " + user.getLastname() + " admin?")
@@ -65,18 +66,32 @@ public class AdminActivity extends AppCompatActivity {
                                 databaseService.setUser(user, new DatabaseService.DatabaseCallback<Void>() {
                                     @Override
                                     public void onCompleted(Void object) {
+                                        // --- REFRESH CODE GOES HERE ---
+                                        // Option A: Just refresh the whole list from DB (Safest)
+                                        onResume();
 
+                                        // Option B: If you want to be fancy/fast, just tell the
+                                        // adapter this specific item changed:
+                                        // userAdapter.notifyDataSetChanged();
+
+                                        Toast.makeText(AdminActivity.this, "User is now Admin", Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onFailed(Exception e) {
-
+                                        Toast.makeText(AdminActivity.this, "Failed to update", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             })
                             .setNegativeButton("Cancel", null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
+                }
+                if(!user.isEmployee()){
+                    Toast.makeText(AdminActivity.this, "User is not an employee", Toast.LENGTH_SHORT).show();
+                }
+                if(user.isAdmin()){
+                    Toast.makeText(AdminActivity.this, "User is already admin", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

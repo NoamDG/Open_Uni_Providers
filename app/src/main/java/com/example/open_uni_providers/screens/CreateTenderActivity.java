@@ -20,7 +20,7 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class CreateTenderActivity extends AppCompatActivity {
     static final String TAG = "CreateTenderActivity";
-    EditText TenSubject, ExpD, pubD;
+    EditText TenSubject, ExpD;
     String tenderNum;
     String tContent="";
     Button btnContent, btnSubmit, btnBack;
@@ -42,7 +42,35 @@ public class CreateTenderActivity extends AppCompatActivity {
         databaseService = DatabaseService.getInstance();
         String Winner = "";
         ExpD = findViewById(R.id.ExpDate);
-        pubD = findViewById(R.id.PubDate);
+
+        ExpD.setOnClickListener(v -> {
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            int year = cal.get(java.util.Calendar.YEAR);
+            int month = cal.get(java.util.Calendar.MONTH);
+            int day = cal.get(java.util.Calendar.DAY_OF_MONTH);
+
+            android.app.DatePickerDialog datePickerDialog = new android.app.DatePickerDialog(
+                    CreateTenderActivity.this,
+                    (view, y, m, d) -> {
+                        // This creates the EXACT string "dd/MM/yyyy"
+                        // %02d means: 2 digits, pad with zero if needed
+                        String strDate = String.format(java.util.Locale.getDefault(), "%02d/%02d/%04d", d, m + 1, y);
+                        /// note to self: the %02d - 2d means how many digits, the 0 before means that if its a singular characters theres a 0 at start.
+                        /// note 2: the m+1 is because the android count for months starts at 0, so adding 1 makes it readable
+                        ExpD.setText(strDate);
+                    },
+                    year, month, day
+            );
+
+            // Set minimum date to today so they can't pick the past
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            datePickerDialog.show();
+        });
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        java.util.Date currentDate = calendar.getTime();
+        java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+        String formattedDate = dateFormat.format(currentDate);
+        String publishD =formattedDate;
         btnContent = findViewById(R.id.btnContent);
         btnBack = findViewById(R.id.btn_back_in_create_tender);
         btnBack.setOnClickListener(v -> {
@@ -52,7 +80,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {
 
-            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), pubD.getText().toString())){
+            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), publishD)){
                 return;
             }
             Intent intentContent = new Intent(CreateTenderActivity.this, TenderContentCreateActivity.class);
@@ -60,7 +88,7 @@ public class CreateTenderActivity extends AppCompatActivity {
             intentContent.putExtra("ExpD", ExpD.getText().toString());
             intentContent.putExtra("Status", Status);
             intentContent.putExtra("Winner", Winner);
-            intentContent.putExtra("PubD", pubD.getText().toString());
+            intentContent.putExtra("PubD", publishD);
             startActivity(intentContent);
         });
 
@@ -77,22 +105,12 @@ public class CreateTenderActivity extends AppCompatActivity {
             TenSubject.requestFocus();
             return false;
         }
-
-        if (!Validator.isDateValid(ExpDa)) {
-            Log.e(TAG, "checkInput: Expire Date must be in the format xx/xx/xxxx");
+        if (!Validator.isDateValid(PubDa, ExpDa)) {
+            Log.e(TAG, "checkInput: Expire Date must be later than today");
             /// show error message to user
-            ExpD.setError("Expire Date must be in the format xx/xx/xxxx");
-            /// set focus to ExpD field
-            ExpD.requestFocus();
-            return false;
-        }
-
-        if (!Validator.isDateValid(PubDa)) {
-            Log.e(TAG, "checkInput: Expire Date must be in the format xx/xx/xxxx");
-            /// show error message to user
-            pubD.setError("Expire Date must be in the format xx/xx/xxxx");
+            ExpD.setError("Expire Date must be later than today");
             /// set focus to publish date field
-            pubD.requestFocus();
+            ExpD.requestFocus();
             return false;
         }
 

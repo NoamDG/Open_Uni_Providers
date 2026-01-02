@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Tender;
+import com.example.open_uni_providers.services.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,6 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void onLongClick(Tender Tender);
         void onEditWinnerClick(Tender tender);
         void onApplyClick(Tender tender);
-        void onViewContentEmpClick(Tender tender);
-        void onViewContentProClick(Tender tender);
 
         boolean showProviderLayout(Tender tender);
         boolean showEmployeeLayout(Tender tender);
@@ -61,8 +60,6 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
 
         holder.BtnEditWinner.setOnClickListener(v -> onTenderClickListener.onEditWinnerClick(tender));
         holder.BtnApply.setOnClickListener(v -> onTenderClickListener.onApplyClick(tender));
-        holder.BtnViewContentEmp.setOnClickListener(v -> onTenderClickListener.onViewContentEmpClick(tender));
-        holder.BtnViewContentPro.setOnClickListener(v -> onTenderClickListener.onViewContentProClick(tender));
 
         // Note: Removed holder.BtnEditStatus.setOnClickListener logic from here
 
@@ -112,8 +109,8 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View employeeLayout, providerLayout;
         TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus;
-        // REMOVED BtnEditStatus from here
-        public Button BtnEditWinner, BtnViewContentEmp, BtnViewContentPro, BtnApply;
+        public Button BtnEditWinner, BtnApply;
+        DatabaseService databaseService;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -125,10 +122,8 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             tvWinner = itemView.findViewById(R.id.tv_item_winner);
             tvStatus = itemView.findViewById(R.id.tv_item_status);
             BtnEditWinner = itemView.findViewById(R.id.btn_edit_winner);
-            BtnViewContentEmp = itemView.findViewById(R.id.btn_view_content_emp);
-            BtnViewContentPro = itemView.findViewById(R.id.btn_view_content_pro);
             BtnApply = itemView.findViewById(R.id.btn_apply);
-            // REMOVED findViewById for btn_edit_status
+            databaseService=DatabaseService.getInstance();
         }
 
         void setInfo(Tender tender) {
@@ -137,6 +132,39 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             this.tvExpire.setText(tender.getExpDate()); // Fixed: was using getPubDate twice
             this.tvWinner.setText(tender.getTenWinner());
             this.tvStatus.setText(tender.getTenStat());
+
+
+            try {
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+                sdf.setLenient(false);
+
+                java.util.Date expiryDate = sdf.parse(tender.getExpDate());
+                String today = sdf.format(new java.util.Date());
+                java.util.Date gToday = sdf.parse(today);
+                if (expiryDate != null && gToday.after(expiryDate)) {
+                    if (!tender.getTenStat().equals("Ended")) {
+                        tender.setTenStat("Ended");
+                        databaseService.setTender(tender, null);
+                    }
+                    tvStatus.setText(tender.getTenStat());
+                    BtnEditWinner.setVisibility(View.GONE);
+                    BtnApply.setVisibility(View.GONE);
+                }
+            }
+            catch (java.text.ParseException e) {
+                tvStatus.setText(tender.getTenStat());
+            }
+            if(tender.getTenStat().equals("Inactive")){
+                tvStatus.setText(tender.getTenStat());
+                BtnApply.setVisibility(View.GONE);
+                BtnEditWinner.setVisibility(View.VISIBLE);
+            }
+            if(tender.getTenStat().equals("Active")){
+                tvStatus.setText(tender.getTenStat());
+                tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#2E7D32"));
+                BtnApply.setVisibility(View.VISIBLE);
+                BtnEditWinner.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.open_uni_providers.screens;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
@@ -68,14 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             tEmail.requestFocus();
             return false;
         }
-        if (!Validator.isPasswordValid(password)) {
-            Log.e(TAG, "checkInput: Invalid password");
-            /// show error message to user
-            tPassword.setError("Password must be at least 6 characters long");
-            /// set focus to password field
-            tPassword.requestFocus();
-            return false;
-        }
+
 
         return true;
 

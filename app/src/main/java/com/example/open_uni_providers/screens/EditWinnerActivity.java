@@ -62,7 +62,7 @@ public class EditWinnerActivity extends AppCompatActivity {
 
                         }
                     });
-                    if(!winner.getText().toString().equals("")){
+                    if(!winner.getText().toString().isEmpty()){
                         tender.setTenStat("Inactive");
                         databaseService.setTender(tender, new DatabaseService.DatabaseCallback<Void>() {
                             @Override
@@ -104,7 +104,7 @@ public class EditWinnerActivity extends AppCompatActivity {
     }
     private boolean checkInputStatus(String Winner){
         if (!Validator.isWinnerValid(Winner)) {
-            winner.setError("Last name must be at least 3 characters long or blank");
+            winner.setError("Winner name must be at least 3 characters long or blank");
             /// set focus to winner name field
             winner.requestFocus();
             return false;
