@@ -40,6 +40,7 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         String Status = getIntent().getStringExtra("Status");
         String Winner = getIntent().getStringExtra("Winner");
         String PubD = getIntent().getStringExtra("PubD");
+        String cat = getIntent().getStringExtra("category");
         content = findViewById(R.id.content_text);
         btnBack = findViewById(R.id.btn_back_to_create_tender);
         btnBack.setOnClickListener(v -> {
@@ -54,13 +55,14 @@ public class TenderContentCreateActivity extends AppCompatActivity {
             Log.d(TAG, "onClick: Status: " + Status);
             Log.d(TAG, "onClick: Winner Name: " + Winner);
             Log.d(TAG, "onClick: Publish Date: " + PubD);
+            Log.d(TAG, "onClick: Category: " + cat);
             Log.d(TAG, "onClick: Content: " + content.getText().toString());
             Log.d(TAG, "onClick: Validating input...");
             if (!checkInputTenderContent(content.getText().toString())) {
                 /// stop if input is invalid
                 return;
             }
-            addTender(sub, ExpD, Status, Winner, PubD, content.getText().toString());
+            addTender(sub, ExpD, Status, Winner, PubD, cat, content.getText().toString());
 
             Log.d(TAG, "onClick: Adding tender...");
             Intent back_from_create_tender = new Intent(TenderContentCreateActivity.this, TenderActivity.class);
@@ -81,10 +83,10 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         Log.d(TAG, "checkInput: Input is valid");
         return true;
     }
-    private void addTender(String subject, String ExpD, String Status, String Winner, String PubD, String content) {
+    private void addTender(String subject, String ExpD, String Status, String Winner, String PubD, String category, String content) {
         Log.d(TAG, "addTender: Adding tender...");
         String id = databaseService.generateTenderId();
-        Tender tender = new Tender(id, subject, ExpD, Status, Winner, PubD, content);
+        Tender tender = new Tender(id, subject, ExpD, Status, Winner, PubD, category, content);
         /// create a new user object
         createTenderInDatabase(tender);
     }

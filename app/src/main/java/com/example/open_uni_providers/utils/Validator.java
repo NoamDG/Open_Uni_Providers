@@ -33,6 +33,9 @@ public class Validator {
     public static boolean isSubjectValid(@Nullable String sub) {
         return sub != null && sub.length() > 0;
     }
+    public static boolean isCategoryValid(@Nullable String cat) {
+        return cat != null && cat.length() > 0 && cat.matches("^[a-zA-Z\\s]+$");
+    }
     public static boolean isDateValid(@Nullable String dateP, @Nullable String dateE) {
         if (dateP == null || dateE == null) return false;
 

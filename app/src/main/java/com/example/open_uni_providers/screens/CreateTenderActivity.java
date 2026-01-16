@@ -20,7 +20,7 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class CreateTenderActivity extends AppCompatActivity {
     static final String TAG = "CreateTenderActivity";
-    EditText TenSubject, ExpD;
+    EditText TenSubject, ExpD, TenCategory;
     String tenderNum;
     String tContent="";
     Button btnContent, btnSubmit, btnBack;
@@ -39,6 +39,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         });
         String Status="Active";
         TenSubject = findViewById(R.id.TenderSubject);
+        TenCategory = findViewById(R.id.Category);
         databaseService = DatabaseService.getInstance();
         String Winner = "";
         ExpD = findViewById(R.id.ExpDate);
@@ -80,7 +81,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {
 
-            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), publishD)){
+            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), publishD, TenCategory.getText().toString())){
                 return;
             }
             Intent intentContent = new Intent(CreateTenderActivity.this, TenderContentCreateActivity.class);
@@ -89,13 +90,14 @@ public class CreateTenderActivity extends AppCompatActivity {
             intentContent.putExtra("Status", Status);
             intentContent.putExtra("Winner", Winner);
             intentContent.putExtra("PubD", publishD);
+            intentContent.putExtra("category", TenCategory.getText().toString());
             startActivity(intentContent);
         });
 
 
 
     }
-    private boolean checkInputTender(String subject, String ExpDa, String PubDa) {
+    private boolean checkInputTender(String subject, String ExpDa, String PubDa, String category) {
 
         if (!Validator.isSubjectValid(subject)) {
             Log.e(TAG, "checkInput: Invalid subject");
@@ -103,6 +105,14 @@ public class CreateTenderActivity extends AppCompatActivity {
             TenSubject.setError("Please enter subject");
             /// set focus to subject field
             TenSubject.requestFocus();
+            return false;
+        }
+        if (!Validator.isCategoryValid(category)) {
+            Log.e(TAG, "checkInput: Invalid category");
+            /// show error message to user
+            TenCategory.setError("Please enter category, must be without numbers");
+            /// set focus to subject field
+            TenCategory.requestFocus();
             return false;
         }
         if (!Validator.isDateValid(PubDa, ExpDa)) {

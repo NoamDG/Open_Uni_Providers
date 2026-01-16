@@ -73,7 +73,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge;
+        TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge, status;
         Button BtnUpdateUserInfo, BtnDeleteUser, BtnMakeAdmin;
 
         public ViewHolder(@NonNull View itemView) {
@@ -83,6 +83,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             tvLName = itemView.findViewById(R.id.tv_item_user_lname);
             tvEmail = itemView.findViewById(R.id.tv_item_user_email);
             tvPassword = itemView.findViewById(R.id.tv_item_user_password);
+            status = itemView.findViewById(R.id.tv_item_user_status);
             BtnUpdateUserInfo = itemView.findViewById(R.id.btn_update_user);
             BtnDeleteUser = itemView.findViewById(R.id.btn_delete_user);
             BtnMakeAdmin = itemView.findViewById(R.id.btn_make_admin);
@@ -104,6 +105,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             else{
                 tvAdminBadge.setVisibility(View.GONE);
                 BtnMakeAdmin.setVisibility(View.VISIBLE);
+            }
+            if(user.isEmployee()){
+                status.setText("Employee");
+            }
+            else{
+                status.setText("Provider");
             }
         }
     }

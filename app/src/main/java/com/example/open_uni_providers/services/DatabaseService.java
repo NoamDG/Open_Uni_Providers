@@ -348,7 +348,11 @@ public class DatabaseService {
     public void setTender(@NotNull final Tender tender, @Nullable final DatabaseCallback<Void> callback) {
         writeData(TENDERS_PATH + "/" + tender.getId(), tender, callback);
     }
-
+    public void updateTenderStatusOnly(String tenderId, String newStatus) {
+        if (tenderId == null) return;
+        String specificPath = TENDERS_PATH + "/" + tenderId + "/tenStat";
+        writeData(specificPath, newStatus, null);
+    }
     public void getTender(@NotNull final String id, @NotNull final DatabaseCallback<Tender> callback) {
         getData(TENDERS_PATH + "/" + id, Tender.class, callback);
     }

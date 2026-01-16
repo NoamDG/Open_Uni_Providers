@@ -41,8 +41,7 @@ public class ApplyListActivity extends AppCompatActivity {
         databaseService = DatabaseService.getInstance();
         back = findViewById(R.id.btn_from_apply_to_main);
         back.setOnClickListener(v -> {
-            Intent back = new Intent(ApplyListActivity.this, MainActivity.class);
-            startActivity(back);
+            finish();
         });
         rvList = findViewById(R.id.rv_apply_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
@@ -61,6 +60,9 @@ public class ApplyListActivity extends AppCompatActivity {
             public void onViewContentClick(Application apply) {
                 Intent view_content = new Intent(ApplyListActivity.this, ViewApplicationActivity.class);
                 view_content.putExtra("content", apply.getContent());
+                view_content.putExtra("fname", apply.getfName());
+                view_content.putExtra("lname", apply.getlName());
+                view_content.putExtra("subject", apply.getSubject());
                 startActivity(view_content);
             }
         });

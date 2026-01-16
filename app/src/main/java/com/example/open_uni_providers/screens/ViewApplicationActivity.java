@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 
 public class ViewApplicationActivity extends AppCompatActivity {
-    TextView tvContent;
+    TextView tvContent, fName, lName, Subject;
     Button BtnBack;
 
     @Override
@@ -28,12 +28,20 @@ public class ViewApplicationActivity extends AppCompatActivity {
             return insets;
         });
         String content = getIntent().getStringExtra("content");
+        String subject = getIntent().getStringExtra("subject");
+        String fname = getIntent().getStringExtra("fname");
+        String lname = getIntent().getStringExtra("lname");
         tvContent = findViewById(R.id.tv_application);
         tvContent.setText(content);
+        Subject = findViewById(R.id.tv_item_subject);
+        Subject.setText(subject);
+        fName = findViewById(R.id.tv_item_user_fname);
+        fName.setText(fname);
+        lName = findViewById(R.id.tv_item_user_lname);
+        lName.setText(lname);
         BtnBack = findViewById(R.id.btn_from_view_content_to_apply_list);
         BtnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(ViewApplicationActivity.this, ApplyListActivity.class);
-            startActivity(intent);
+            finish();
         });
     }
 }
