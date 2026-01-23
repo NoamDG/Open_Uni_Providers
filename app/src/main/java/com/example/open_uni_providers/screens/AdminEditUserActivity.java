@@ -54,12 +54,11 @@ public class AdminEditUserActivity extends AppCompatActivity {
         temail.setText(email);
         tpassword.setText(password);
 
-        back = findViewById(R.id.btnEditBack);
+        back = findViewById(R.id.btn_edit_user_back);
         Submit = findViewById(R.id.btnSaveUser);
 
         back.setOnClickListener(v -> {
-            Intent backint = new Intent(AdminEditUserActivity.this, AdminActivity.class);
-            startActivity(backint);
+            finish();
         });
 
         Submit.setOnClickListener(v -> {

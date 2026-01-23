@@ -104,7 +104,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             }
             else{
                 tvAdminBadge.setVisibility(View.GONE);
-                BtnMakeAdmin.setVisibility(View.VISIBLE);
+                if(user.isEmployee()){
+                    BtnMakeAdmin.setVisibility(View.VISIBLE);
+                }
+                else{
+                    BtnMakeAdmin.setVisibility(View.GONE);
+                }
+
             }
             if(user.isEmployee()){
                 status.setText("Employee");

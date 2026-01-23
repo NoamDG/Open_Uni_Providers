@@ -14,7 +14,7 @@ import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class LandingActivity extends AppCompatActivity {
-    Button BtnReg, BtnLog;
+    Button BtnReg, BtnLog, BtnGuest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class LandingActivity extends AppCompatActivity {
             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(mainIntent);
         }
-
+        BtnGuest = findViewById(R.id.btn_main_guest);
         BtnLog = findViewById(R.id.btn_main_login);
         BtnReg = findViewById(R.id.btn_main_register);
         BtnReg.setOnClickListener(v -> {
@@ -42,6 +42,10 @@ public class LandingActivity extends AppCompatActivity {
         BtnLog.setOnClickListener(v -> {
             Intent intentLog = new Intent(LandingActivity.this, LoginActivity.class);
             startActivity(intentLog);
+        });
+        BtnGuest.setOnClickListener(v -> {
+            Intent intentGuest = new Intent(LandingActivity.this, MainActivity.class);
+            startActivity(intentGuest);
         });
     }
 }

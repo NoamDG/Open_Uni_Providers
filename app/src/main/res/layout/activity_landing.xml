@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defapp"
+    android:background="@drawable/app_background"
     tools:context=".screens.LandingActivity">
 
     <ImageView
@@ -26,14 +26,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="24dp"
-        android:weightSum="2"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             android:id="@+id/btn_main_login"
             android:layout_width="0dp"
             android:layout_height="64dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="7dp"
             android:layout_weight="1"
             android:backgroundTint="@color/defbutton"
             android:text="LOGIN"
@@ -42,10 +42,22 @@
             app:cornerRadius="16dp" />
 
         <Button
+            android:id="@+id/btn_main_guest"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="#222222"
+            android:text="GUEST"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
+
+        <Button
             android:id="@+id/btn_main_register"
             android:layout_width="0dp"
             android:layout_height="64dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="7dp"
             android:layout_weight="1"
             android:backgroundTint="@color/defbutton"
             android:text="REGISTER"

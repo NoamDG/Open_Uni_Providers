@@ -50,10 +50,15 @@ public class TenderActivity extends AppCompatActivity {
         });
         databaseService = DatabaseService.getInstance();
         user = SharedPreferencesUtil.getUser(TenderActivity.this);
-        isEmployee = user.isEmployee();
+        if(user != null){
+            isEmployee = user.isEmployee();
+        }
+        else{
+            isEmployee = false;
+        }
         etSearch = findViewById(R.id.et_tender_search);
         BtnCreateTender = findViewById(R.id.btn_create_tender);
-        back = findViewById(R.id.btn_from_tender_to_main);
+        back = findViewById(R.id.btn_tender_list_back);
         rvList = findViewById(R.id.rv_tender_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -71,11 +76,7 @@ public class TenderActivity extends AppCompatActivity {
                 viewContent.putExtra("expire" ,tender.getExpDate());
                 viewContent.putExtra("winner" ,tender.getTenWinner());
                 viewContent.putExtra("category" ,tender.getCategory());
-                if (user.isEmployee()) {
-                    viewContent.putExtra("content_emp", tender.getContent());
-                } else {
-                    viewContent.putExtra("content_pro", tender.getContent());
-                }
+                viewContent.putExtra("content", tender.getContent());
                 startActivity(viewContent);
 
             }
@@ -113,15 +114,18 @@ public class TenderActivity extends AppCompatActivity {
 
             }
 
-            @Override
-            public boolean showProviderLayout(Tender tender) {
-                return (!user.isEmployee());
+            public String StatusLayout(Tender tender) {
+                if(user != null){
+                    if(user.isEmployee()){
+                        return "Employee";
+                    }
+                    else{
+                        return "Provider";
+                    }
+                }
+                return "Guest";
             }
 
-            @Override
-            public boolean showEmployeeLayout(Tender tender) {
-                return user.isEmployee();
-            }
         });
         rvList.setAdapter(tenderAdapter);
 

@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defapp"
+    android:background="@drawable/app_background"
     tools:context=".screens.EditWinnerActivity">
 
     <TextView
@@ -76,7 +76,7 @@
             app:cornerRadius="12dp" />
 
         <Button
-            android:id="@+id/btn_back_from_winner_to_tender"
+            android:id="@+id/btn_edit_winner_back"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:text="Back"

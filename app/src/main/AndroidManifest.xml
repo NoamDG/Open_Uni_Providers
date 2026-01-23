@@ -13,10 +13,13 @@
         android:theme="@style/Theme.Open_Uni_Providers"
         tools:targetApi="31">
         <activity
-            android:name=".screens.AdminEditUserActivity"
+            android:name=".screens.LandingActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.AdminActivity"
+            android:name=".screens.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.AdminEditUserActivity"
             android:exported="false" />
         <activity
             android:name=".screens.AdminActivity"
@@ -37,9 +40,6 @@
             android:name=".screens.EditWinnerActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.EditStatusActivity"
-            android:exported="false" />
-        <activity
             android:name=".screens.ViewContentActivity"
             android:exported="false" />
         <activity
@@ -50,9 +50,6 @@
             android:exported="false" />
         <activity
             android:name=".screens.ContactActivity"
-            android:exported="false" />
-        <activity
-            android:name=".screens.BidderListActivity"
             android:exported="false" />
         <activity
             android:name=".screens.GeneralTermsActivity"
@@ -70,7 +67,7 @@
             android:name=".screens.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".screens.LandingActivity"
+            android:name=".screens.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

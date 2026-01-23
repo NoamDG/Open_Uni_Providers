@@ -24,8 +24,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void onEditWinnerClick(Tender tender);
         void onApplyClick(Tender tender);
 
-        boolean showProviderLayout(Tender tender);
-        boolean showEmployeeLayout(Tender tender);
+        String StatusLayout(Tender tender);
     }
 
     private final List<Tender> tenderList;
@@ -60,17 +59,17 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         holder.BtnEditWinner.setOnClickListener(v -> onTenderClickListener.onEditWinnerClick(tender));
         holder.BtnApply.setOnClickListener(v -> onTenderClickListener.onApplyClick(tender));
 
-        // Note: Removed holder.BtnEditStatus.setOnClickListener logic from here
-
-        if (onTenderClickListener.showEmployeeLayout(tender)) {
+        String status = onTenderClickListener.StatusLayout(tender);
+        if (status.equals("Employee")) {
             holder.employeeLayout.setVisibility(View.VISIBLE);
-        } else {
-            holder.employeeLayout.setVisibility(View.GONE);
+            holder.providerLayout.setVisibility(View.GONE);
         }
-
-        if (onTenderClickListener.showProviderLayout(tender)) {
+        else if(status.equals("Provider")) {
+            holder.employeeLayout.setVisibility(View.GONE);
             holder.providerLayout.setVisibility(View.VISIBLE);
-        } else {
+        }
+        else{
+            holder.employeeLayout.setVisibility(View.GONE);
             holder.providerLayout.setVisibility(View.GONE);
         }
     }

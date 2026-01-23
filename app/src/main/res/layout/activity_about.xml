@@ -1,93 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
-    tools:context=".screens.ApplyActivity">
-
+    tools:context=".screens.AboutActivity">
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-black"
-        android:text="New Application"
-        android:textColor="#212121"
+        android:text="About"
+        android:textColor="@color/black"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/inputCard"
+        android:id="@+id/cardTerms"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@android:color/white"
+        app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/footer_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:strokeColor="#DDDDDD"
-        app:strokeWidth="1dp">
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:strokeWidth="0dp">
 
-        <EditText
-            android:id="@+id/application"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="top|start"
-            android:hint="Write your application details here..."
-            android:inputType="textMultiLine"
+            android:fadeScrollbars="false"
             android:padding="20dp"
-            android:textSize="16sp" />
+            android:scrollbarStyle="insideOverlay">
+
+            <TextView
+                android:id="@+id/tvAboutContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                tools:text="About content goes here..." />
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
     <View
         android:id="@+id/footer_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
         android:background="#33000000"
         app:layout_constraintBottom_toTopOf="@+id/footer_container" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/footer_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingBottom="16dp"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/btn_submit_application"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/specbutton"
-            android:text="Submit Application"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-
-        <Button
-            android:id="@+id/btn_apply_back"
+            android:id="@+id/btn_about_back"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="@color/defbutton"
             android:text="Back"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:cornerRadius="12dp" />
-
-    </LinearLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

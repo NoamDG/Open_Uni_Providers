@@ -35,10 +35,9 @@ public class EditWinnerActivity extends AppCompatActivity {
         databaseService = DatabaseService.getInstance();
         winner = findViewById(R.id.update_winner);
         submit = findViewById(R.id.btn_submit_winner_update);
-        back = findViewById(R.id.btn_back_from_winner_to_tender);
+        back = findViewById(R.id.btn_edit_winner_back);
         back.setOnClickListener(v -> {
-            Intent back = new Intent(EditWinnerActivity.this, TenderActivity.class);
-            startActivity(back);
+            finish();
         });
         String cwinner = getIntent().getStringExtra("winner");
         winner.setText(cwinner);

@@ -73,10 +73,9 @@ public class CreateTenderActivity extends AppCompatActivity {
         String formattedDate = dateFormat.format(currentDate);
         String publishD =formattedDate;
         btnContent = findViewById(R.id.btnContent);
-        btnBack = findViewById(R.id.btn_back_in_create_tender);
+        btnBack = findViewById(R.id.btn_create_tender_back);
         btnBack.setOnClickListener(v -> {
-            Intent back = new Intent(CreateTenderActivity.this, TenderActivity.class);
-            startActivity(back);
+            finish();
         });
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {

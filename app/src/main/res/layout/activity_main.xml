@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defapp"
+    android:background="@drawable/app_background"
     tools:context=".screens.MainActivity">
 
     <ImageView
@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:id="@+id/user_layout"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -67,6 +68,38 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/defbutton"
                 android:text="Update Info"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:id="@+id/guest_layout"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_main_login_page"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/defbutton"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
+
+            <Button
+                android:id="@+id/btn_main_register_page"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/defbutton"
+                android:text="Register"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 app:cornerRadius="8dp" />
@@ -121,17 +154,9 @@
                 android:text="Admin Page"
                 android:textAllCaps="false"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:cornerRadius="12dp" />
 
-            <Button
-                android:id="@+id/btn_contact_red"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:backgroundTint="@color/specbutton"
-                android:text="Contact Us"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                app:cornerRadius="12dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -152,7 +177,35 @@
             android:paddingHorizontal="24dp"
             android:text="General Terms"
             android:textAllCaps="false"
+            android:textStyle="bold"
             android:textSize="12sp"
+            android:layout_marginEnd="8dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btn_contact_red"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/defbutton"
+            android:paddingHorizontal="24dp"
+            android:text="Contact Us"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp"
+            app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btn_about_red"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/defbutton"
+            android:paddingHorizontal="24dp"
+            android:text="About"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp"
             app:cornerRadius="20dp" />
 
     </LinearLayout>

@@ -39,7 +39,7 @@ public class ApplyListActivity extends AppCompatActivity {
             return insets;
         });
         databaseService = DatabaseService.getInstance();
-        back = findViewById(R.id.btn_from_apply_to_main);
+        back = findViewById(R.id.btn_apply_list_back);
         back.setOnClickListener(v -> {
             finish();
         });

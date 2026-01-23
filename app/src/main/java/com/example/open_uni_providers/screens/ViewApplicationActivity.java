@@ -39,7 +39,7 @@ public class ViewApplicationActivity extends AppCompatActivity {
         fName.setText(fname);
         lName = findViewById(R.id.tv_item_user_lname);
         lName.setText(lname);
-        BtnBack = findViewById(R.id.btn_from_view_content_to_apply_list);
+        BtnBack = findViewById(R.id.btn_application_content_back);
         BtnBack.setOnClickListener(v -> {
             finish();
         });

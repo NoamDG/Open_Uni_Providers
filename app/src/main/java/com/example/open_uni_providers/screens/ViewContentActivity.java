@@ -29,8 +29,7 @@ public class ViewContentActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String content_emp = getIntent().getStringExtra("content_emp");
-        String content_pro = getIntent().getStringExtra("content_pro");
+        String content = getIntent().getStringExtra("content");
         String subject = getIntent().getStringExtra("subject");
         String publish = getIntent().getStringExtra("publish");
         String expire = getIntent().getStringExtra("expire");
@@ -50,17 +49,10 @@ public class ViewContentActivity extends AppCompatActivity {
         tvWinner = findViewById(R.id.tv_winner_name);
         tvWinner.setText(winner);
         tvContent = findViewById(R.id.tv_content);
-        user = SharedPreferencesUtil.getUser(this);
-        if(user.isEmployee()){
-            tvContent.setText(content_emp);
-        }
-        else{
-            tvContent.setText(content_pro);
-        }
-        BtnBack = findViewById(R.id.btn_from_view_content_to_tender);
+        tvContent.setText(content);
+        BtnBack = findViewById(R.id.btn_tender_content_back);
         BtnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(ViewContentActivity.this, TenderActivity.class);
-            startActivity(intent);
+            finish();
         });
     }
 }

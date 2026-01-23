@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Open_Uni_Providers</string>
+
+    <string name="about_text">
+        Welcome to this application.\n\n
+        The point of this application is to allow the employees of the Open University to handle tenders more easily, and allow providers to apply to said tenders more easily.\n\n
+        This app was developed by Noam Gamzu.
+    </string>
+
+
     <string name="terms_text">
         General Terms and Conditions\n\n
         Welcome to the Tenders Website. This site is managed and operated by the Open University of Israel, located at 1 University Road, Ra\'anana (hereinafter: \"The Open University\"). Use of this website, including the content and various services provided herein, signifies your agreement to these terms; therefore, you are requested to read them carefully. On this site, you will find links to content whose use is subject, in addition to these general terms, to specific online agreements relevant to them.\n\n

@@ -37,12 +37,11 @@ public class UpdateInfoActivity extends AppCompatActivity {
         });
         Pass = findViewById(R.id.etPassword);
         Em = findViewById(R.id.etEmail);
-        Back = findViewById(R.id.btn_from_update_to_main);
+        Back = findViewById(R.id.btn_update_back);
         user = SharedPreferencesUtil.getUser(UpdateInfoActivity.this);
         databaseService = DatabaseService.getInstance();
         Back.setOnClickListener(v -> {
-            Intent back = new Intent(UpdateInfoActivity.this, MainActivity.class);
-            startActivity(back);
+            finish();
         });
         Submit = findViewById(R.id.btn_submit_update_info);
         Pass.setText(user.getPassword());

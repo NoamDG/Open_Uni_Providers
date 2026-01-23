@@ -37,13 +37,12 @@ public class ApplyActivity extends AppCompatActivity {
         });
         content = findViewById(R.id.application);
         submit = findViewById(R.id.btn_submit_application);
-        back = findViewById(R.id.btn_back_from_appeal_to_tender);
+        back = findViewById(R.id.btn_apply_back);
         user = SharedPreferencesUtil.getUser(ApplyActivity.this);
         databaseService = DatabaseService.getInstance();
         String subject = getIntent().getStringExtra("subject");
         back.setOnClickListener(v -> {
-            Intent back = new Intent(ApplyActivity.this, TenderActivity.class);
-            startActivity(back);
+            finish();
         });
         submit.setOnClickListener(v -> {
             if (!checkInputApplication(content.getText().toString())) {

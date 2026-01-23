@@ -42,10 +42,9 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         String PubD = getIntent().getStringExtra("PubD");
         String cat = getIntent().getStringExtra("category");
         content = findViewById(R.id.content_text);
-        btnBack = findViewById(R.id.btn_back_to_create_tender);
+        btnBack = findViewById(R.id.btn_create_content_back);
         btnBack.setOnClickListener(v -> {
-            Intent back = new Intent(TenderContentCreateActivity.this, CreateTenderActivity.class);
-            startActivity(back);
+            finish();
         });
         btnSubmit = findViewById(R.id.btn_submit_create_tender_content);
         btnSubmit.setOnClickListener(v -> {

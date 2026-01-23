@@ -34,14 +34,13 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        BtnLogBack = findViewById(R.id.btn_login_to_landing);
+        BtnLogBack = findViewById(R.id.btn_login_back);
         BtnSubmitLog = findViewById(R.id.btn_submit_login);
         databaseService = DatabaseService.getInstance();
         tEmail = findViewById(R.id.inputEmail);
         tPassword = findViewById(R.id.inputPassword);
         BtnLogBack.setOnClickListener(v -> {
-            Intent intentLogBack = new Intent(LoginActivity.this, LandingActivity.class);
-            startActivity(intentLogBack);
+            finish();
         });
         BtnSubmitLog.setOnClickListener(v -> {
             Log.d(TAG,"onClick: Login Button Clicked");

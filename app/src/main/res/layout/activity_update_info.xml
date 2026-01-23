@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defapp"
+    android:background="@drawable/app_background"
     tools:context=".screens.UpdateInfoActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/btn_from_update_to_main"
+            android:id="@+id/btn_update_back"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="@color/defbutton"

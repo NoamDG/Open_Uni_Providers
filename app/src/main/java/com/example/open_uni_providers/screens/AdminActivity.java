@@ -38,10 +38,9 @@ public class AdminActivity extends AppCompatActivity {
             return insets;
         });
         databaseService = DatabaseService.getInstance();
-        back = findViewById(R.id.btn_from_user_list_to_admin);
+        back = findViewById(R.id.btn_admin_back);
         back.setOnClickListener(v -> {
-            Intent back = new Intent(AdminActivity.this, MainActivity.class);
-            startActivity(back);
+            finish();
         });
         rvList = findViewById(R.id.rv_user_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
@@ -86,12 +85,6 @@ public class AdminActivity extends AppCompatActivity {
                             .setNegativeButton("Cancel", null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
-                }
-                if(!user.isEmployee()){
-                    Toast.makeText(AdminActivity.this, "User is not an employee", Toast.LENGTH_SHORT).show();
-                }
-                if(user.isAdmin()){
-                    Toast.makeText(AdminActivity.this, "User is already admin", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
