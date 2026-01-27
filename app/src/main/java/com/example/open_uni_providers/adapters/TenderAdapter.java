@@ -24,9 +24,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void onEditWinnerClick(Tender tender);
         void onApplyClick(Tender tender);
 
-        boolean showProviderLayout(Tender tender);
-        boolean showEmployeeLayout(Tender tender);
-        // Note: Removed onEditStatusClick from interface if it was there
+        String Layout(Tender tender);
     }
 
     private final List<Tender> tenderList;
@@ -61,18 +59,17 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         holder.BtnEditWinner.setOnClickListener(v -> onTenderClickListener.onEditWinnerClick(tender));
         holder.BtnApply.setOnClickListener(v -> onTenderClickListener.onApplyClick(tender));
 
-        // Note: Removed holder.BtnEditStatus.setOnClickListener logic from here
-
-        if (onTenderClickListener.showEmployeeLayout(tender)) {
-            holder.employeeLayout.setVisibility(View.VISIBLE);
-        } else {
+        if(onTenderClickListener.Layout(tender).equals("Guest")){
+            holder.employeeLayout.setVisibility(View.GONE);
+            holder.providerLayout.setVisibility(View.GONE);
+        }
+        if (onTenderClickListener.Layout(tender).equals("Provider")) {
+            holder.providerLayout.setVisibility(View.VISIBLE);
             holder.employeeLayout.setVisibility(View.GONE);
         }
-
-        if (onTenderClickListener.showProviderLayout(tender)) {
-            holder.providerLayout.setVisibility(View.VISIBLE);
-        } else {
+        if (onTenderClickListener.Layout(tender).equals("Employee")) {
             holder.providerLayout.setVisibility(View.GONE);
+            holder.employeeLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -108,7 +105,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View employeeLayout, providerLayout;
-        TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus;
+        TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus, tvCategory;
         public Button BtnEditWinner, BtnApply;
         DatabaseService databaseService;
 
@@ -121,6 +118,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             tvExpire = itemView.findViewById(R.id.tv_item_expire_date);
             tvWinner = itemView.findViewById(R.id.tv_item_winner);
             tvStatus = itemView.findViewById(R.id.tv_item_status);
+            tvCategory = itemView.findViewById(R.id.tv_item_category);
             BtnEditWinner = itemView.findViewById(R.id.btn_edit_winner);
             BtnApply = itemView.findViewById(R.id.btn_apply);
             databaseService=DatabaseService.getInstance();
@@ -129,10 +127,10 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         void setInfo(Tender tender) {
             this.tvSubject.setText(tender.getTenSubj());
             this.tvPublish.setText(tender.getPubDate());
-            this.tvExpire.setText(tender.getExpDate()); // Fixed: was using getPubDate twice
+            this.tvExpire.setText(tender.getExpDate());
             this.tvWinner.setText(tender.getTenWinner());
             this.tvStatus.setText(tender.getTenStat());
-
+            this.tvCategory.setText(tender.getCategory());
 
             try {
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
@@ -144,8 +142,9 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
                 if (expiryDate != null && gToday.after(expiryDate)) {
                     if (!tender.getTenStat().equals("Ended")) {
                         tender.setTenStat("Ended");
-                        databaseService.setTender(tender, null);
+                        databaseService.updateTenderStatusOnly(tender.getId(), "Ended");
                     }
+                    tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
                     tvStatus.setText(tender.getTenStat());
                     BtnEditWinner.setVisibility(View.GONE);
                     BtnApply.setVisibility(View.GONE);
@@ -157,6 +156,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             if(tender.getTenStat().equals("Inactive")){
                 tvStatus.setText(tender.getTenStat());
                 BtnApply.setVisibility(View.GONE);
+                tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
                 BtnEditWinner.setVisibility(View.VISIBLE);
             }
             if(tender.getTenStat().equals("Active")){

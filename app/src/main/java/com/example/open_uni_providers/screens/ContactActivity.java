@@ -27,8 +27,7 @@ public class ContactActivity extends AppCompatActivity {
         });
         back = findViewById(R.id.btn_contact_to_main);
         back.setOnClickListener(v -> {
-            Intent intent = new Intent(ContactActivity.this, MainActivity.class);
-            startActivity(intent);
+            finish();
         });
     }
 }

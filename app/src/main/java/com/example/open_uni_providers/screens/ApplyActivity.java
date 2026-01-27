@@ -42,8 +42,7 @@ public class ApplyActivity extends AppCompatActivity {
         databaseService = DatabaseService.getInstance();
         String subject = getIntent().getStringExtra("subject");
         back.setOnClickListener(v -> {
-            Intent back = new Intent(ApplyActivity.this, TenderActivity.class);
-            startActivity(back);
+            finish();
         });
         submit.setOnClickListener(v -> {
             if (!checkInputApplication(content.getText().toString())) {

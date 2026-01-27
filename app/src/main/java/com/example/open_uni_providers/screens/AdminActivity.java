@@ -40,8 +40,7 @@ public class AdminActivity extends AppCompatActivity {
         databaseService = DatabaseService.getInstance();
         back = findViewById(R.id.btn_from_user_list_to_admin);
         back.setOnClickListener(v -> {
-            Intent back = new Intent(AdminActivity.this, MainActivity.class);
-            startActivity(back);
+            finish();
         });
         rvList = findViewById(R.id.rv_user_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
@@ -155,3 +154,4 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 }
+

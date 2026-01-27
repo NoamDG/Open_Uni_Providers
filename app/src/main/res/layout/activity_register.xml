@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defapp"
+    android:background="@drawable/app_background"
     tools:context=".screens.RegisterActivity">
 
     <androidx.core.widget.NestedScrollView

@@ -2,9 +2,12 @@ package com.example.open_uni_providers.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +27,7 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class TenderActivity extends AppCompatActivity {
     User user;
@@ -32,6 +36,8 @@ public class TenderActivity extends AppCompatActivity {
     RecyclerView rvList;
     DatabaseService databaseService;
     TenderAdapter tenderAdapter;
+    EditText etSearch;
+    List<Tender> allTenders = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,26 +50,27 @@ public class TenderActivity extends AppCompatActivity {
         });
         databaseService = DatabaseService.getInstance();
         user = SharedPreferencesUtil.getUser(TenderActivity.this);
-        isEmployee = user.isEmployee();
+        etSearch = findViewById(R.id.et_tender_search);
         BtnCreateTender = findViewById(R.id.btn_create_tender);
         back = findViewById(R.id.btn_from_tender_to_main);
-        back.setOnClickListener(v -> {
-            Intent back = new Intent(TenderActivity.this, MainActivity.class);
-            startActivity(back);
-        });
         rvList = findViewById(R.id.rv_tender_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
+
+        back.setOnClickListener(v -> {
+            finish();
+        });
 
         tenderAdapter = new TenderAdapter(new TenderAdapter.OnTenderClickListener() {
             @Override
             public void onClick(Tender tender) {
                 Intent viewContent = new Intent(TenderActivity.this, ViewContentActivity.class);
-
-                if (user.isEmployee()) {
-                    viewContent.putExtra("content_emp", tender.getContent());
-                } else {
-                    viewContent.putExtra("content_pro", tender.getContent());
-                }
+                viewContent.putExtra("subject" ,tender.getTenSubj());
+                viewContent.putExtra("status" ,tender.getTenStat());
+                viewContent.putExtra("publish" ,tender.getPubDate());
+                viewContent.putExtra("expire" ,tender.getExpDate());
+                viewContent.putExtra("winner" ,tender.getTenWinner());
+                viewContent.putExtra("category" ,tender.getCategory());
+                viewContent.putExtra("content", tender.getContent());
                 startActivity(viewContent);
 
             }
@@ -102,27 +109,53 @@ public class TenderActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean showProviderLayout(Tender tender) {
-                return (!user.isEmployee());
-            }
-
-            @Override
-            public boolean showEmployeeLayout(Tender tender) {
-                return user.isEmployee();
+            public String Layout(Tender tender) {
+                if(user!=null){
+                    if(user.isEmployee()){
+                        return "Employee";
+                    }
+                    else{
+                        return "Provider";
+                    }
+                }
+                else{
+                    return "Guest";
+                }
             }
         });
         rvList.setAdapter(tenderAdapter);
+        if(user!=null){
+            if (user.isEmployee()) {
+                BtnCreateTender.setVisibility(View.VISIBLE);
+                BtnCreateTender.setOnClickListener(v -> {
+                    Intent list_to_create_tender = new Intent(TenderActivity.this, CreateTenderActivity.class);
+                    startActivity(list_to_create_tender);
+                });
+            }
+            else {
+                BtnCreateTender.setVisibility(View.GONE);
+            }
+        }
+        else{
+            BtnCreateTender.setVisibility(View.GONE);
+        }
 
-        if (isEmployee) {
-            BtnCreateTender.setVisibility(View.VISIBLE);
-            BtnCreateTender.setOnClickListener(v -> {
-                Intent list_to_create_tender = new Intent(TenderActivity.this, CreateTenderActivity.class);
-                startActivity(list_to_create_tender);
-            });
-        }
-        else {
-            BtnCreateTender.setVisibility(View.GONE);  // hides it fully
-        }
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterTenders(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -131,9 +164,11 @@ public class TenderActivity extends AppCompatActivity {
 
         databaseService.getTenderList(new DatabaseService.DatabaseCallback<List<Tender>>() {
             @Override
-            public void onCompleted(List<Tender> tenders) {
-                Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "tenders:" + tenders.size());
-                tenderAdapter.setTenderList(tenders);
+            public void onCompleted(List<Tender> allTenders) {
+                Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "tenders:" + allTenders.size());
+                TenderActivity.this.allTenders.clear();
+                TenderActivity.this.allTenders.addAll(allTenders);
+                filterTenders(etSearch.getText().toString()+"");
             }
 
             @Override
@@ -141,5 +176,26 @@ public class TenderActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void filterTenders(final String text) {
+        List<Tender> filterTenders = new ArrayList<>(allTenders);
+        if (text.isEmpty()){
+            tenderAdapter.setTenderList(allTenders);
+            return;
+        }
+
+        // remove all tenders from the filter list that DON'T start with text (lower case)
+        filterTenders.removeIf(new Predicate<Tender>() {
+            @Override
+            public boolean test(Tender tender) {
+                String tenderCategory = tender.getCategory();
+                // if there is no category, remove the tender (failed check)
+                if (tenderCategory == null) return true;
+                return !tenderCategory.toLowerCase().startsWith(text.toLowerCase());
+            }
+        });
+
+        tenderAdapter.setTenderList(filterTenders);
     }
 }

@@ -4,18 +4,19 @@ import androidx.annotation.NonNull;
 
 
 public class Tender {
-    String id, tenSubj, tenStat, tenWinner, pubDate, expDate, content;
+    String id, tenSubj, tenStat, tenWinner, pubDate, expDate, content, category;
 
     public Tender() {
     }
 
-    public Tender(String id, String subject, String expireDate, String status, String winnerName, String pubDate, String content) {
+    public Tender(String id, String subject, String expireDate, String status, String winnerName, String pubDate, String Category, String content) {
         this.id = id;
         this.tenSubj = subject;
         this.expDate = expireDate;
         this.tenStat = status;
         this.tenWinner = winnerName;
         this.pubDate = pubDate;
+        this.category = Category;
         this.content = content;
     }
 
@@ -65,6 +66,13 @@ public class Tender {
 
     public void setExpDate(String expDate) {
         this.expDate = expDate;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getContent() {

@@ -60,8 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         tID = findViewById(R.id.user_ID);
         btnSubmitReg = findViewById(R.id.btnSubmit);
         btnRegBack.setOnClickListener(v -> {
-            Intent intentRegBack = new Intent(RegisterActivity.this, LandingActivity.class);
-            startActivity(intentRegBack);
+            finish();
         });
         btnSubmitReg.setOnClickListener(v -> {
             Log.d(TAG, "onClick: Register button clicked");

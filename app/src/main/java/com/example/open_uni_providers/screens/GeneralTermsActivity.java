@@ -31,8 +31,7 @@ public class GeneralTermsActivity extends AppCompatActivity {
         Terms.setText(R.string.terms_text);
         back = findViewById(R.id.btn_terms_to_main);
         back.setOnClickListener(v -> {
-            Intent intent =new Intent(GeneralTermsActivity.this, MainActivity.class);
-            startActivity(intent);
+            finish();
         });
     }
 }

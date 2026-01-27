@@ -40,8 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         tEmail = findViewById(R.id.inputEmail);
         tPassword = findViewById(R.id.inputPassword);
         BtnLogBack.setOnClickListener(v -> {
-            Intent intentLogBack = new Intent(LoginActivity.this, LandingActivity.class);
-            startActivity(intentLogBack);
+            finish();
         });
         BtnSubmitLog.setOnClickListener(v -> {
             Log.d(TAG,"onClick: Login Button Clicked");

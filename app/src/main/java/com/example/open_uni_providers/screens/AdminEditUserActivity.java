@@ -58,8 +58,7 @@ public class AdminEditUserActivity extends AppCompatActivity {
         Submit = findViewById(R.id.btnSaveUser);
 
         back.setOnClickListener(v -> {
-            Intent backint = new Intent(AdminEditUserActivity.this, AdminActivity.class);
-            startActivity(backint);
+            finish();
         });
 
         Submit.setOnClickListener(v -> {

@@ -41,8 +41,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
         user = SharedPreferencesUtil.getUser(UpdateInfoActivity.this);
         databaseService = DatabaseService.getInstance();
         Back.setOnClickListener(v -> {
-            Intent back = new Intent(UpdateInfoActivity.this, MainActivity.class);
-            startActivity(back);
+            finish();
         });
         Submit = findViewById(R.id.btn_submit_update_info);
         Pass.setText(user.getPassword());
