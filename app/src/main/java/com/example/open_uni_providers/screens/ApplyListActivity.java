@@ -20,13 +20,17 @@ import com.example.open_uni_providers.models.Application;
 import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.services.DatabaseService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class ApplyListActivity extends AppCompatActivity {
     RecyclerView rvList;
     DatabaseService databaseService;
     Button back;
     ApplicationAdapter appAdapter;
+    List<Application> allApps = new ArrayList<>();
+    String subject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class ApplyListActivity extends AppCompatActivity {
         });
         databaseService = DatabaseService.getInstance();
         back = findViewById(R.id.btn_apply_list_back);
+        subject = getIntent().getStringExtra("subject");
         back.setOnClickListener(v -> {
             finish();
         });
@@ -77,7 +82,9 @@ public class ApplyListActivity extends AppCompatActivity {
             @Override
             public void onCompleted(List<Application> apps) {
                 Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "applications:" + apps.size());
-                appAdapter.setApplicationList(apps);
+                allApps.clear();
+                allApps.addAll(apps);
+                filterApps(subject);
             }
 
             @Override
@@ -85,5 +92,23 @@ public class ApplyListActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void filterApps(final String text) {
+        List<Application> filterApps = new ArrayList<>(allApps);
+        if (text == null || text.isBlank()){
+            appAdapter.setApplicationList(allApps);
+            return;
+        }
+
+        // remove all tenders from the filter list that DON'T start with text (lower case)
+        filterApps.removeIf(new Predicate<Application>() {
+            @Override
+            public boolean test(Application application) {
+                String appSubject = application.getSubject()+"";
+                return !appSubject.equals(text + "");
+            }
+        });
+
+        appAdapter.setApplicationList(filterApps);
     }
 }

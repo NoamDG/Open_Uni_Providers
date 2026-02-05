@@ -17,8 +17,7 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class ViewContentActivity extends AppCompatActivity {
     TextView tvContent, tvSubject, tvPublish, tvExpire, tvStatus, tvCategory, tvWinner;
-    Button BtnBack;
-    User user;
+    Button BtnBack, btnApps;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +49,12 @@ public class ViewContentActivity extends AppCompatActivity {
         tvWinner.setText(winner);
         tvContent = findViewById(R.id.tv_content);
         tvContent.setText(content);
+        btnApps = findViewById(R.id.btn_tender_view_app);
+        btnApps.setOnClickListener(v -> {
+            Intent apps = new Intent(ViewContentActivity.this, ApplyListActivity.class);
+            apps.putExtra("subject", subject);
+            startActivity(apps);
+        });
         BtnBack = findViewById(R.id.btn_tender_content_back);
         BtnBack.setOnClickListener(v -> {
             finish();

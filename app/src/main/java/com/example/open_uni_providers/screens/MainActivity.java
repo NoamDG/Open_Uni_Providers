@@ -19,9 +19,8 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
-    TextView Name;
     User user;
-    Button BtnLogout,BtnUpdate,btnAbout, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
+    Button Name, BtnLogout,BtnUpdate,btnAbout, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
     LinearLayout GuestLO, UserLO;
     String FName, LName;
     @Override
@@ -55,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
             LName = user.getLastname();
             Name.setText(FName+" "+LName);
             UserLO.setVisibility(View.VISIBLE);
+            Name.setOnClickListener(v -> {
+                Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(profile);
+            });
             if (user.isAdmin()) {
                 btn_admin.setVisibility(View.VISIBLE);
                 btn_admin.setOnClickListener(v -> {
@@ -91,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         else{
             Name.setText("Guest");
             GuestLO.setVisibility(View.VISIBLE);
+            Name.setOnClickListener(v -> {
+                Intent profile = new Intent(MainActivity.this, LandingActivity.class);
+                startActivity(profile);
+            });
             BtnLogin.setOnClickListener(v -> {
                 Intent login = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(login);
