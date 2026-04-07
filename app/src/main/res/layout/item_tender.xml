@@ -105,7 +105,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Winner: "
+                android:text="WINNER: "
                 android:textColor="#888888"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -126,7 +126,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category: "
+                android:text="CATEGORY: "
                 android:textColor="#888888"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -138,38 +138,6 @@
                 android:textSize="13sp"
                 tools:text="Infrastructure" />
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/item_tender_provider_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_apply"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="@color/specbutton"
-                android:text="Apply"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:cornerRadius="8dp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/item_tender_employee_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_edit_winner"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:backgroundTint="@color/specbutton"
-                android:text="Edit Winner"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:cornerRadius="8dp" />
-        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

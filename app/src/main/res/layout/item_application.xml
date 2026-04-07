@@ -79,23 +79,25 @@
                     android:textSize="14sp"
                     android:gravity="end"
                     tools:text="Web Development" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STATUS"
+                    android:textColor="#888888"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_item_app_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    tools:text="ACCEPTED/PENDING" />
+
             </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_view_application"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/defbutton"
-            android:text="View Content"
-            android:textAllCaps="false"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="8dp"
-            app:icon="@android:drawable/ic_menu_agenda"
-            app:iconGravity="textStart"
-            app:iconPadding="8dp" />
 
     </LinearLayout>
 

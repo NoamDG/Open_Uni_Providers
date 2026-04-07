@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText tEmail,tPassword;
     static final String TAG = "LoginActivity";
     Button BtnSubmitLog;
-    Button BtnLogBack;
+    ImageButton BtnLogBack;
     DatabaseService databaseService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

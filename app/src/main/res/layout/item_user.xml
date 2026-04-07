@@ -7,98 +7,112 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="3dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white"
+        android:background="@android:color/white"
         android:padding="16dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_item_user_fname"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_item_user_pfp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.MediumComponent"
+                android:src="@drawable/image" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:textColor="#212121"
-                android:textSize="18sp"
-                tools:text="John" />
+                android:layout_toEndOf="@id/iv_item_user_pfp"
+                android:layout_marginStart="12dp"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_item_user_lname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="sans-serif-black"
-                android:textColor="#212121"
-                android:textSize="18sp"
-                tools:text="Doe" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_item_user_fname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="#212121"
+                        android:textSize="17sp"
+                        tools:text="John" />
+                    <TextView
+                        android:id="@+id/tv_item_user_lname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="#212121"
+                        android:textSize="17sp"
+                        tools:text="Doe" />
+                </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tv_item_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#757575"
+                    android:textSize="13sp"
+                    tools:text="john.doe@example.com" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_admin_badge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
+                android:layout_alignParentEnd="true"
+                android:background="#E3F2FD"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
                 android:text="ADMIN"
-                android:textColor="@android:color/white"
+                android:textColor="#1976D2"
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:visibility="visible" />
-        </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="12dp"
+            android:background="#F5F5F5" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="2dp"
-            android:gravity="center_vertical">
-
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/tv_item_user_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#757575"
-                android:textSize="12sp"
+                android:textColor="#9E9E9E"
+                android:textSize="11sp"
                 tools:text="ID: 123456789" />
-
             <TextView
                 android:id="@+id/tv_item_user_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="#F5F5F5"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="1dp"
-                android:textColor="#616161"
-                android:textSize="10sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#1976D2"
+                android:textSize="11sp"
                 android:textStyle="italic"
                 tools:text="Employee/Provider" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_item_user_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="#424242"
-            android:textSize="14sp"
-            tools:text="john.doe@example.com" />
 
         <TextView
             android:id="@+id/tv_item_user_password"
@@ -115,37 +129,45 @@
             <Button
                 android:id="@+id/btn_update_user"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:backgroundTint="@color/defbutton"
-                android:text="Edit"
-                android:textAllCaps="false"
+                android:backgroundTint="#1976D2"
+                android:text="EDIT"
                 android:textSize="12sp"
-                app:cornerRadius="6dp" />
+                android:textStyle="bold"
+                app:icon="@drawable/update_info_logo"
+                app:iconSize="16dp"
+                app:cornerRadius="10dp" />
 
             <Button
                 android:id="@+id/btn_make_admin"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:layout_marginEnd="4dp"
-                android:backgroundTint="@color/specbutton"
-                android:text="Make Admin"
-                android:textAllCaps="false"
-                android:textSize="11sp"
-                app:cornerRadius="6dp" />
-
-            <Button
-                android:id="@+id/btn_delete_user"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:backgroundTint="#C62828"
-                android:text="Delete"
-                android:textAllCaps="false"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="#0D47A1"
+                android:text="ADMIN"
                 android:textSize="12sp"
-                app:cornerRadius="6dp" />
+                android:textStyle="bold"
+                app:icon="@drawable/make_admin_logo"
+                app:iconSize="16dp"
+                app:cornerRadius="10dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_delete_user"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#D32F2F"
+            android:text="DELETE USER"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:icon="@drawable/delete_account_logo"
+            app:iconGravity="textStart"
+            app:iconSize="16dp"
+            app:cornerRadius="10dp" />
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

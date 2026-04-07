@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +21,8 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class TenderContentCreateActivity extends AppCompatActivity {
     EditText content;
-    Button btnSubmit, btnBack;
+    Button btnSubmit;
+    ImageButton BtnBack;
     DatabaseService databaseService;
     static final String TAG = "TenderContentCreateActivity";
 
@@ -42,8 +44,8 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         String PubD = getIntent().getStringExtra("PubD");
         String cat = getIntent().getStringExtra("category");
         content = findViewById(R.id.content_text);
-        btnBack = findViewById(R.id.btn_create_content_back);
-        btnBack.setOnClickListener(v -> {
+        BtnBack = findViewById(R.id.btn_create_content_back);
+        BtnBack.setOnClickListener(v -> {
             finish();
         });
         btnSubmit = findViewById(R.id.btn_submit_create_tender_content);

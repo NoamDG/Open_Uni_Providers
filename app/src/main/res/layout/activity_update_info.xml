@@ -6,112 +6,160 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.UpdateInfoActivity">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/footer_divider">
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btn_update_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#1976D2" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bakbak_one"
+            android:text="UPDATE INFO"
+            android:textColor="#0D47A1"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardUpdateContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="28dp">
+            android:clipToPadding="false"
+            android:padding="24dp">
 
-            <TextView
-                android:id="@+id/tvTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:gravity="center"
-                android:text="UPDATE INFO"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-                android:fontFamily="sans-serif-black" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="E-MAIL"
-                android:textColor="#444444"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Enter new email"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textSize="16sp" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/current_pfp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:padding="2dp"
+                        android:scaleType="centerCrop"
+                        app:strokeColor="#1976D2"
+                        app:strokeWidth="2dp"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.MediumComponent"
+                        app:srcCompat="@drawable/image" />
 
-            <TextView
-                android:id="@+id/tvPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="PASSWORD"
-                android:textColor="#444444"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Tap to change photo"
+                        android:textColor="#546E7A"
+                        android:textStyle="bold"
+                        android:textSize="13sp" />
+                </LinearLayout>
 
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:background="@android:drawable/edit_text"
-                android:hint="Enter new password"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEW E-MAIL"
+                    android:textColor="#546E7A"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
 
-            <Button
-                android:id="@+id/btn_submit_update_info"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/specbutton"
-                android:text="UPDATE"
-                android:textStyle="bold"
-                app:cornerRadius="12dp" />
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="Enter new email"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#455A64"
+                    android:textSize="16sp" />
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="NEW PASSWORD"
+                    android:textColor="#546E7A"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
 
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="Enter new password"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="#455A64"
+                    android:textSize="16sp" />
 
-    <FrameLayout
-        android:id="@+id/footer_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_submit_update_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="UPDATE PROFILE"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05"
+                    android:backgroundTint="#1976D2"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/submit_logo"
+                    app:iconGravity="textStart"
+                    app:iconPadding="12dp" />
 
-        <Button
-            android:id="@+id/btn_update_back"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/defbutton"
-            android:text="Back"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-    </FrameLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

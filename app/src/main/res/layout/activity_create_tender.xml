@@ -6,141 +6,175 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.CreateTenderActivity">
 
-    <TextView
-        android:id="@+id/titleCreateTender"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="Create Tender"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ScrollView
+        <ImageButton
+            android:id="@+id/btn_create_tender_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#1976D2" />
+
+        <TextView
+            android:id="@+id/titleCreateTender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bakbak_one"
+            android:text="CREATE TENDER"
+            android:textColor="#0D47A1"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/formCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/footer_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleCreateTender">
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutTenderSubject"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tender Subject"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp">
+                android:orientation="vertical"
+                android:padding="28dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TenderSubject"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTenderSubject"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="Tender Subject"
+                    app:boxStrokeColor="#1976D2"
+                    app:hintTextColor="#1976D2"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutCategory"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Category"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/TenderSubject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="#455A64"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Category"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutCategory"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="20dp"
+                    android:hint="Category"
+                    app:boxStrokeColor="#1976D2"
+                    app:hintTextColor="#1976D2"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutExpDate"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Expire Date"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:endIconMode="custom"
-                app:endIconDrawable="@android:drawable/ic_menu_my_calendar">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="#455A64"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ExpDate"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutExpDate"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginTop="20dp"
+                    android:hint="Expire Date"
+                    app:boxStrokeColor="#1976D2"
+                    app:hintTextColor="#1976D2"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@android:drawable/ic_menu_my_calendar"
+                    app:endIconTint="#1976D2">
 
-        </LinearLayout>
-    </ScrollView>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ExpDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:textColor="#455A64"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
+            </LinearLayout>
+        </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:id="@+id/footer_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContent"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="8dp"
-            android:text="Content of Tender"
-            android:textAllCaps="false"
+            android:layout_height="60dp"
+            android:text="PROCEED TO CONTENT"
+            android:textAllCaps="true"
             android:textStyle="bold"
-            app:backgroundTint="@color/specbutton"
-            app:cornerRadius="12dp" />
-
-        <Button
-            android:id="@+id/btn_create_tender_back"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Back"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:backgroundTint="@color/defbutton"
-            app:cornerRadius="12dp" />
+            android:letterSpacing="0.05"
+            android:backgroundTint="#1976D2"
+            app:cornerRadius="18dp"
+            app:icon="@drawable/submit_logo"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:rippleColor="#33FFFFFF" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

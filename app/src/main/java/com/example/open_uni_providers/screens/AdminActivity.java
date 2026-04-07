@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,7 +25,7 @@ import java.util.List;
 public class AdminActivity extends AppCompatActivity {
     RecyclerView rvList;
     DatabaseService databaseService;
-    Button back;
+    ImageButton back;
     UserAdapter userAdapter;
 
     @Override

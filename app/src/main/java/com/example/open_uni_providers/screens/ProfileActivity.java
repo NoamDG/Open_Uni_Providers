@@ -2,7 +2,10 @@ package com.example.open_uni_providers.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,12 +17,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
+import com.example.open_uni_providers.utils.ImageUtil;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView FName, LName, ID, Email, Password;
+    TextView FName, LName, ID, Email, Password, Status;
+    ImageView PFP;
     User user;
-    Button Back, Edit;
+    Button Edit;
+    ImageButton Back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +42,27 @@ public class ProfileActivity extends AppCompatActivity {
         ID = findViewById(R.id.ProfID);
         Email = findViewById(R.id.ProfEm);
         Password = findViewById(R.id.ProfPass);
+        Status = findViewById(R.id.ProfStatus);
         Back = findViewById(R.id.btn_user_profile_back);
         Edit = findViewById(R.id.btn_edit_user);
+        PFP = findViewById(R.id.ProfIm);
+        if(user.getIm64()!=null){
+            PFP.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
+        }
+        else{
+            PFP.setVisibility(View.GONE);
+        }
         FName.setText(user.getFirstname());
         LName.setText(user.getLastname());
         ID.setText(user.getId());
         Email.setText(user.getEmail());
         Password.setText(user.getPassword());
+        if (user.isEmployee()){
+            Status.setText("Employee");
+        }
+        else{
+            Status.setText("Provider");
+        }
         Back.setOnClickListener(v -> {
             finish();
         });

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,7 +32,8 @@ import java.util.function.Predicate;
 
 public class TenderActivity extends AppCompatActivity {
     User user;
-    Button BtnCreateTender, back;
+    Button BtnCreateTender;
+    ImageButton BtnBack;
     boolean isEmployee=false;
     RecyclerView rvList;
     DatabaseService databaseService;
@@ -58,11 +60,11 @@ public class TenderActivity extends AppCompatActivity {
         }
         etSearch = findViewById(R.id.et_tender_search);
         BtnCreateTender = findViewById(R.id.btn_create_tender);
-        back = findViewById(R.id.btn_tender_list_back);
+        BtnBack = findViewById(R.id.btn_tender_list_back);
         rvList = findViewById(R.id.rv_tender_list);
         rvList.setLayoutManager(new LinearLayoutManager(this));
 
-        back.setOnClickListener(v -> {
+        BtnBack.setOnClickListener(v -> {
             finish();
         });
 
@@ -77,40 +79,13 @@ public class TenderActivity extends AppCompatActivity {
                 viewContent.putExtra("winner" ,tender.getTenWinner());
                 viewContent.putExtra("category" ,tender.getCategory());
                 viewContent.putExtra("content", tender.getContent());
+                viewContent.putExtra("id", tender.getId());
                 startActivity(viewContent);
 
             }
 
             @Override
             public void onLongClick(Tender tender) {
-
-            }
-
-            @Override
-            public void onEditWinnerClick(Tender tender) {
-                if(tender.getTenStat().equals("Active") || tender.getTenStat().equals("Inactive")){
-                    Intent edit_winner = new Intent(TenderActivity.this, EditWinnerActivity.class);
-                    edit_winner.putExtra("winner", tender.getTenWinner());
-                    edit_winner.putExtra("id", tender.getId());
-                    startActivity(edit_winner);
-                }
-                else{
-                    Toast.makeText(TenderActivity.this, "This tender is expired or inactive", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onApplyClick(Tender tender) {
-                if(tender.getTenStat().equals("Active")){
-                    Intent apply = new Intent(TenderActivity.this, ApplyActivity.class);
-                    apply.putExtra("id", tender.getId());
-                    apply.putExtra("subject", tender.getTenSubj());
-                    startActivity(apply);
-                }
-                else{
-                    Toast.makeText(TenderActivity.this, "This tender is expired or inactive", Toast.LENGTH_LONG).show();
-                }
-
 
             }
 

@@ -2,6 +2,7 @@ package com.example.open_uni_providers.screens;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 
 public class AboutActivity extends AppCompatActivity {
-    Button back;
+    ImageButton back;
     TextView About;
 
     @Override

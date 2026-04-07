@@ -1,88 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.ViewApplicationActivity">
 
-    <TextView
-        android:id="@+id/titleView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:text="Application Content"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_application_content_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0D47A1" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bakbak_one"
+            android:text="APPLICATION"
+            android:textColor="#0D47A1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contentCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="24dp"
         app:cardElevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
+        app:strokeWidth="1dp"
+        app:strokeColor="#BBDEFB"
+        app:layout_constraintBottom_toTopOf="@+id/footer_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleView"
-        app:strokeWidth="0dp">
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:padding="20dp">
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="24dp">
 
                 <TextView
                     android:id="@+id/tv_item_subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    tools:text="SUBJECT: PROCUREMENT OF LAPTOPS" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#33000000" />
+                    android:textColor="#1976D2"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    tools:text="Procurement of Laptops" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Applicant: "
-                        android:textColor="#666666"
-                        android:textSize="14sp"
+                        android:textColor="#546E7A"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_item_user_fname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#333333"
+                        android:textColor="#263238"
                         android:textSize="14sp"
+                        android:textStyle="bold"
                         tools:text="John" />
 
                     <TextView
@@ -90,16 +116,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:textColor="#333333"
+                        android:textColor="#263238"
                         android:textSize="14sp"
+                        android:textStyle="bold"
                         tools:text="Doe" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#1A000000" />
+                    android:layout_height="1.5dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="#E3F2FD" />
 
                 <TextView
                     android:id="@+id/tv_application"
@@ -107,37 +134,33 @@
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="6sp"
                     android:text="Loading application details..."
-                    android:textColor="#333333"
+                    android:textColor="#455A64"
                     android:textSize="16sp" />
 
             </LinearLayout>
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
-
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/footer_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:orientation="vertical"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/btn_application_content_back"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_accept_app"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/defbutton"
-            android:text="Back"
-            android:textAllCaps="false"
-            android:textSize="16sp"
+            android:layout_height="60dp"
+            android:backgroundTint="#1976D2"
+            android:text="ACCEPT APPLICATION"
+            android:textAllCaps="true"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp" />
-    </FrameLayout>
+            app:icon="@drawable/submit_logo"
+            app:iconPadding="12dp"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

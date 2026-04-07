@@ -2,18 +2,19 @@ package com.example.open_uni_providers.models;
 
 
 public class User {
-    public String id,email,firstname,lastname,password;
+    public String id,email,firstname,lastname,password, im64;
     public boolean admin, employee;
 
 
     public User(){}
-    public User(String id, String email, String firstname, String lastname, String password,
+    public User(String id, String email, String firstname, String lastname, String password, String im64,
                 boolean admin, boolean employee) {
         this.id = id;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
+        this.im64 = im64;
         this.admin = admin;
         this.employee = employee;
     }
@@ -48,6 +49,12 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+    public String getIm64() {
+        return im64;
+    }
+    public void setIm64(String im64) {
+        this.im64 = im64;
     }
 
     public String getPassword() {

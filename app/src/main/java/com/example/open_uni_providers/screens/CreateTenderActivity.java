@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +23,8 @@ public class CreateTenderActivity extends AppCompatActivity {
     static final String TAG = "CreateTenderActivity";
     EditText TenSubject, ExpD, TenCategory;
     String tenderNum;
-    String tContent="";
-    Button btnContent, btnSubmit, btnBack;
-
-    String tenderId;
+    Button btnContent, btnSubmit;
+    ImageButton btnBack;
     DatabaseService databaseService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

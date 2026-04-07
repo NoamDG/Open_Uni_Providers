@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/acme</item>
+        <item>@font/adlam_display</item>
+        <item>@font/alatsi</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/alumni_sans_collegiate_one</item>
+        <item>@font/asset</item>
+        <item>@font/bakbak_one</item>
+        <item>@font/inter_extrabold</item>
+        <item>@font/roboto_bold</item>
+    </array>
+</resources>

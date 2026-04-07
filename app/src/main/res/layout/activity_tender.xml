@@ -1,62 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.TenderActivity">
 
-    <LinearLayout
-        android:id="@+id/header_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp"
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_tender_list_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0D47A1" />
 
         <TextView
             android:id="@+id/tvTenderTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Tenders"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
+            android:fontFamily="@font/bakbak_one"
+            android:text="TENDERS"
+            android:textColor="#0D47A1"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/create_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_create_tender"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/specbutton"
-            android:text="Create New Tender"
-            android:textAllCaps="false"
-            android:textSize="16sp"
+            android:layout_height="60dp"
+            android:backgroundTint="#1976D2"
+            android:text="CREATE A NEW TENDER"
+            android:textAllCaps="true"
+            android:textSize="14sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"
-            app:icon="@android:drawable/ic_input_add" />
+            app:cornerRadius="16dp"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="20dp" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/et_tender_search"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_card"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="54dp"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_search_bar"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawablePadding="10dp"
-        android:hint="Search category..."
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:maxLines="1"
-        android:paddingHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="2dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#BBDEFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_container" />
+        app:layout_constraintTop_toBottomOf="@+id/create_section">
+
+        <EditText
+            android:id="@+id/et_tender_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="12dp"
+            android:drawableTint="#1976D2"
+            android:hint="Search categories..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:textColor="#455A64"
+            android:textSize="15sp" />
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tender_list"
@@ -64,38 +109,12 @@
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:clipToPadding="false"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="12dp"
         android:paddingBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_tender_search"
+        app:layout_constraintTop_toBottomOf="@+id/search_card"
         tools:listitem="@layout/item_tender" />
-
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
-
-    <FrameLayout
-        android:id="@+id/footer_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/btn_tender_list_back"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/defbutton"
-            android:text="Back"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

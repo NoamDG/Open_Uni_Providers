@@ -3,6 +3,7 @@ package com.example.open_uni_providers.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 
 public class GeneralTermsActivity extends AppCompatActivity {
-    Button back;
+    ImageButton back;
     TextView Terms;
 
     @Override

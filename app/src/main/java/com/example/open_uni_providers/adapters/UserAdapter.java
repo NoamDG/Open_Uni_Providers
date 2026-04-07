@@ -4,10 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.open_uni_providers.models.User;
+import com.example.open_uni_providers.utils.ImageUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +76,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge, status;
+        TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge, status, im64;
+        ImageView profPic;
         Button BtnUpdateUserInfo, BtnDeleteUser, BtnMakeAdmin;
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,6 +88,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             tvEmail = itemView.findViewById(R.id.tv_item_user_email);
             tvPassword = itemView.findViewById(R.id.tv_item_user_password);
             status = itemView.findViewById(R.id.tv_item_user_status);
+            profPic = itemView.findViewById(R.id.iv_item_user_pfp);
             BtnUpdateUserInfo = itemView.findViewById(R.id.btn_update_user);
             BtnDeleteUser = itemView.findViewById(R.id.btn_delete_user);
             BtnMakeAdmin = itemView.findViewById(R.id.btn_make_admin);
@@ -95,6 +100,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             tvFName.setText(user.getFirstname());
             tvLName.setText(user.getLastname());
             tvEmail.setText(user.getEmail());
+
+            profPic.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
             // Masking password for security in the list
             tvPassword.setText("********");
             if (user.isAdmin()){

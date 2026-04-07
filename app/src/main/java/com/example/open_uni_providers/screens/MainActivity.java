@@ -5,6 +5,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,13 +16,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
+import com.example.open_uni_providers.utils.ImageUtil;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     User user;
-    Button Name, BtnLogout,BtnUpdate,btnAbout, btn_tender_red, btn_app_red, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
+    Button Name, BtnLogout,BtnUpdate,btnAbout, btn_tender_red, btn_app_red,btn_app_stat, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
     LinearLayout GuestLO, UserLO;
+    ImageView PFP;
     String FName, LName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        PFP = findViewById(R.id.profileImage);
         user = SharedPreferencesUtil.getUser(MainActivity.this);
         Log.d(TAG, "User: " + user);
         Name = findViewById(R.id.NameView);
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         BtnUpdate = findViewById(R.id.btn_from_main_to_update);
         BtnLogin = findViewById(R.id.btn_main_login_page);
         BtnRegister = findViewById(R.id.btn_main_register_page);
+        btn_app_stat = findViewById(R.id.btn_view_app_status);
         btn_app_red = findViewById(R.id.btn_view_applications);
         btn_app_red.setVisibility(View.GONE);
         btnAbout = findViewById(R.id.btn_about_red);
@@ -49,10 +54,14 @@ public class MainActivity extends AppCompatActivity {
         UserLO = (LinearLayout)findViewById(R.id.user_layout);
         GuestLO.setVisibility(View.GONE);
         UserLO.setVisibility(View.GONE);
+        btn_app_stat.setVisibility(View.GONE);
         if(user != null){
             FName = user.getFirstname();
             LName = user.getLastname();
             Name.setText(FName+" "+LName);
+            if (user.im64 != null){
+                PFP.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
+            }
             UserLO.setVisibility(View.VISIBLE);
             Name.setOnClickListener(v -> {
                 Intent profile = new Intent(MainActivity.this, ProfileActivity.class);
@@ -81,11 +90,16 @@ public class MainActivity extends AppCompatActivity {
             });
             if (user.isEmployee()) {
                 btn_app_red.setVisibility(View.VISIBLE);
-                btn_app_red.setOnClickListener(v -> {
-                    Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);
-                    startActivity(intentApp);
-                });
             }
+            else{
+                btn_app_stat.setVisibility(View.VISIBLE);
+            }
+            btn_app_stat.setOnClickListener(v -> {
+                Intent intentStat = new Intent(MainActivity.this, ApplyListActivity.class);
+                intentStat.putExtra("fName" ,user.getFirstname());
+                intentStat.putExtra("lName" ,user.getLastname());
+                startActivity(intentStat);
+            });
             btn_app_red.setOnClickListener(v -> {
                 Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);
                 startActivity(intentApp);

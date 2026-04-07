@@ -3,6 +3,7 @@ package com.example.open_uni_providers.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 
 public class ContactActivity extends AppCompatActivity {
-    Button back;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

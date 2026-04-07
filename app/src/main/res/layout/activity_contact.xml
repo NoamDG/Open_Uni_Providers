@@ -6,70 +6,98 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.ContactActivity">
 
-    <TextView
-        android:id="@+id/tvContactTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Contact Us"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_contact_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#1976D2" />
+
+        <TextView
+            android:id="@+id/tvContactTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bakbak_one"
+            android:text="CONTACT US"
+            android:textColor="#0D47A1"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contactCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="24dp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="28dp"
         app:cardElevation="6dp"
+        app:strokeWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvContactTitle"
-        app:strokeWidth="0dp">
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="28dp">
+            android:padding="32dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Karen Bechor, Adv."
-                android:textColor="@color/black"
+                android:textColor="#0D47A1"
                 android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Tenders Department"
-                android:textColor="#757575"
+                android:textColor="#546E7A"
                 android:textSize="16sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="20dp"
-                android:background="#EEEEEE" />
+                android:layout_height="1.5dp"
+                android:layout_marginVertical="24dp"
+                android:background="#E1F5FE" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PHONE"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="#9E9E9E"
-                android:letterSpacing="0.1" />
+                android:textColor="#1976D2"
+                android:letterSpacing="0.15" />
 
             <TextView
                 android:id="@+id/tvPhone"
@@ -77,19 +105,21 @@
                 android:layout_height="wrap_content"
                 android:autoLink="phone"
                 android:linksClickable="true"
-                android:paddingBottom="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="20dp"
                 android:text="09-7782205"
-                android:textColorLink="@color/specbutton"
-                android:textSize="18sp" />
+                android:textColorLink="#1565C0"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="#9E9E9E"
-                android:letterSpacing="0.1" />
+                android:textColor="#1976D2"
+                android:letterSpacing="0.15" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -97,37 +127,13 @@
                 android:layout_height="wrap_content"
                 android:autoLink="email"
                 android:linksClickable="true"
+                android:paddingTop="4dp"
                 android:text="karenbe@openu.ac.il"
-                android:textColorLink="@color/specbutton"
-                android:textSize="18sp" />
+                android:textColorLink="#1565C0"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
-
-    <FrameLayout
-        android:id="@+id/footer_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/btn_contact_back"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/defbutton"
-            android:text="Back"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp" />
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,173 +5,202 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="#E3F2FD"
     tools:context=".screens.ViewContentActivity">
 
-    <TextView
-        android:id="@+id/titleView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:text="Tender View"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_tender_content_back"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:padding="14dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0D47A1" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bakbak_one"
+            android:text="TENDER DETAILS"
+            android:textColor="#0D47A1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contentCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="24dp"
         app:cardElevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer_divider"
+        app:strokeWidth="1dp"
+        app:strokeColor="#BBDEFB"
+        app:layout_constraintBottom_toTopOf="@+id/footer_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleView"
-        app:strokeWidth="0dp">
+        app:layout_constraintTop_toBottomOf="@id/header_bar">
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:padding="20dp">
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="24dp">
 
                 <TextView
                     android:id="@+id/tv_subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
-                    android:gravity="center"
-                    android:text="SUBJECT: PROCUREMENT OF LAPTOPS"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#33000000" />
+                    android:textColor="#1976D2"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    tools:text="PROCUREMENT OF LAPTOPS" />
 
                 <TextView
                     android:id="@+id/tv_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Category: Information Technology"
-                    android:textColor="#666666"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_publish_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Published: 01/01/2026"
-                    android:textColor="#333333"
-                    android:textSize="14sp" />
+                    android:textColor="#546E7A"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="Category: Information Technology" />
 
-                <TextView
-                    android:id="@+id/tv_expire_date"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="#E3F2FD" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Expires: 15/01/2026"
-                    android:textColor="#D32F2F"
-                    android:textSize="14sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Status: Awarded"
-                    android:textColor="#2E7D32"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tv_publish_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#455A64"
+                        android:textSize="13sp"
+                        tools:text="Published: 01/01/2026" />
 
-                <TextView
-                    android:id="@+id/tv_winner_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:text="Winner: Tech Supply Co."
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/tv_expire_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="#D32F2F"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        tools:text="Expires: 15/01/2026" />
+
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="#E8F5E9"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:textColor="#2E7D32"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="Status: Awarded" />
+
+                    <TextView
+                        android:id="@+id/tv_winner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="#455A64"
+                        android:textSize="13sp"
+                        android:textStyle="italic"
+                        tools:text="Winner: Tech Supply Co." />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#1A000000" />
+                    android:layout_marginVertical="20dp"
+                    android:background="#F5F5F5" />
 
                 <TextView
                     android:id="@+id/tv_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="6sp"
-                    android:text="Loading detailed content..."
-                    android:textColor="#333333"
-                    android:textSize="16sp" />
+                    android:textColor="#37474F"
+                    android:textSize="15sp"
+                    tools:text="Detailed tender description goes here..." />
 
             </LinearLayout>
         </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-    <View
-        android:id="@+id/footer_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#33000000"
-        app:layout_constraintBottom_toTopOf="@+id/footer_container" />
-
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/footer_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tender_apply"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="58dp"
+            android:backgroundTint="#1976D2"
+            android:text="APPLY"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:icon="@drawable/submit_logo"
+            app:iconPadding="12dp"
+            app:cornerRadius="16dp" />
 
-            <Button
-                android:id="@+id/btn_tender_view_app"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:backgroundTint="@color/defbutton"
-                android:text="View Applications"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:cornerRadius="12dp" />
-
-            <Button
-                android:id="@+id/btn_tender_content_back"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:backgroundTint="@color/defbutton"
-                android:text="Back"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:cornerRadius="12dp" />
-        </LinearLayout>
-
-    </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_tender_view_app"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#0D47A1"
+            android:text="VIEW APPLICATIONS"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:icon="@drawable/view_application_logo"
+            app:iconPadding="12dp"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

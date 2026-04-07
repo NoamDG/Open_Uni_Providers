@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,7 +21,8 @@ import com.example.open_uni_providers.utils.Validator;
 public class AdminEditUserActivity extends AppCompatActivity {
     String fName, lName, email, password, id;
     EditText tfName, tlName, temail, tpassword;
-    Button back, Submit;
+    Button Submit;
+    ImageButton back;
     DatabaseService databaseService;
 
     @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,7 +23,8 @@ import com.example.open_uni_providers.utils.Validator;
 
 public class ApplyActivity extends AppCompatActivity {
     EditText content;
-    Button back, submit;
+    Button submit;
+    ImageButton back;
     User user;
     DatabaseService databaseService;
     @Override
@@ -49,7 +51,7 @@ public class ApplyActivity extends AppCompatActivity {
                 /// stop if input is invalid
                 return;
             }
-            addApplication(user.getFirstname(), user.getLastname(), content.getText().toString(), subject);
+            addApplication(user.getFirstname(), user.getLastname(), content.getText().toString(), subject, "PENDING");
             Intent back_from_create_application = new Intent(ApplyActivity.this, TenderActivity.class);
             startActivity(back_from_create_application);
         });
@@ -67,9 +69,9 @@ public class ApplyActivity extends AppCompatActivity {
 
         return true;
     }
-    private void addApplication(String fName, String lName, String content, String subject) {
+    private void addApplication(String fName, String lName, String content, String subject, String status) {
         String id = databaseService.generateTenderId();
-        Application application= new Application(id, fName, lName, content, subject);
+        Application application= new Application(id, fName, lName, content, subject, status);
         createApplicationInDatabase(application);
     }
 

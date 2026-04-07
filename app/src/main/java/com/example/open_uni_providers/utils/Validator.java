@@ -1,5 +1,6 @@
 package com.example.open_uni_providers.utils;
 import android.util.Patterns;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 public class Validator {
@@ -26,6 +27,9 @@ public class Validator {
     /// @return true if the name is valid, false otherwise
     public static boolean isNameValid(@Nullable String name) {
         return name != null && name.length() >= 3;
+    }
+    public static boolean isCheckValid(@Nullable Boolean checked) {
+        return checked;
     }
     public static boolean isWinnerValid(@Nullable String wName) {
         return (wName != null && wName.length() >= 3) || wName.length()==0;

@@ -21,9 +21,6 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
     public interface OnTenderClickListener {
         void onClick(Tender Tender);
         void onLongClick(Tender Tender);
-        void onEditWinnerClick(Tender tender);
-        void onApplyClick(Tender tender);
-
         String StatusLayout(Tender tender);
     }
 
@@ -56,22 +53,6 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             return true;
         });
 
-        holder.BtnEditWinner.setOnClickListener(v -> onTenderClickListener.onEditWinnerClick(tender));
-        holder.BtnApply.setOnClickListener(v -> onTenderClickListener.onApplyClick(tender));
-
-        String status = onTenderClickListener.StatusLayout(tender);
-        if (status.equals("Employee")) {
-            holder.employeeLayout.setVisibility(View.VISIBLE);
-            holder.providerLayout.setVisibility(View.GONE);
-        }
-        else if(status.equals("Provider")) {
-            holder.employeeLayout.setVisibility(View.GONE);
-            holder.providerLayout.setVisibility(View.VISIBLE);
-        }
-        else{
-            holder.employeeLayout.setVisibility(View.GONE);
-            holder.providerLayout.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -105,23 +86,18 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public View employeeLayout, providerLayout;
         TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus, tvCategory;
-        public Button BtnEditWinner, BtnApply;
+        public Button BtnApply;
         DatabaseService databaseService;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            employeeLayout = itemView.findViewById(R.id.item_tender_employee_layout);
-            providerLayout = itemView.findViewById(R.id.item_tender_provider_layout);
             tvSubject = itemView.findViewById(R.id.tv_item_tender_subject);
             tvPublish = itemView.findViewById(R.id.tv_item_publish_date);
             tvExpire = itemView.findViewById(R.id.tv_item_expire_date);
             tvWinner = itemView.findViewById(R.id.tv_item_winner);
             tvStatus = itemView.findViewById(R.id.tv_item_status);
             tvCategory = itemView.findViewById(R.id.tv_item_category);
-            BtnEditWinner = itemView.findViewById(R.id.btn_edit_winner);
-            BtnApply = itemView.findViewById(R.id.btn_apply);
             databaseService=DatabaseService.getInstance();
         }
 
@@ -147,8 +123,6 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
                     }
                     tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
                     tvStatus.setText(tender.getTenStat());
-                    BtnEditWinner.setVisibility(View.GONE);
-                    BtnApply.setVisibility(View.GONE);
                 }
             }
             catch (java.text.ParseException e) {
@@ -156,15 +130,11 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             }
             if(tender.getTenStat().equals("Inactive")){
                 tvStatus.setText(tender.getTenStat());
-                BtnApply.setVisibility(View.GONE);
                 tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
-                BtnEditWinner.setVisibility(View.VISIBLE);
             }
             if(tender.getTenStat().equals("Active")){
                 tvStatus.setText(tender.getTenStat());
                 tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#2E7D32"));
-                BtnApply.setVisibility(View.VISIBLE);
-                BtnEditWinner.setVisibility(View.VISIBLE);
             }
         }
     }
