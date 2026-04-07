@@ -39,6 +39,10 @@ public class LandingActivity extends AppCompatActivity {
             Intent intentReg = new Intent(LandingActivity.this, RegisterActivity.class);
             startActivity(intentReg);
         });
+        BtnGuest.setOnClickListener(v -> {
+            Intent intentGuest = new Intent(LandingActivity.this, MainActivity.class);
+            startActivity(intentGuest);
+        });
         BtnLog.setOnClickListener(v -> {
             Intent intentLog = new Intent(LandingActivity.this, LoginActivity.class);
             startActivity(intentLog);
