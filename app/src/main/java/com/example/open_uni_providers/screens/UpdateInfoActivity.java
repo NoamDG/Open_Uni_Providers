@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +23,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.adapters.ImageSourceAdapter;
 import com.example.open_uni_providers.models.ImageSourceOption;
-import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.ImageUtil;
@@ -44,6 +42,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
     DatabaseService databaseService;
     private ActivityResultLauncher<Intent> selectImageLauncher;
     private ActivityResultLauncher<Intent> captureImageLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +56,9 @@ public class UpdateInfoActivity extends AppCompatActivity {
         user = SharedPreferencesUtil.getUser(UpdateInfoActivity.this);
         Pass = findViewById(R.id.etPassword);
         PFP = findViewById(R.id.current_pfp);
-        if(user.getIm64()!=null){
+        if (user.getIm64() != null) {
             PFP.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
-        }
-        else{
+        } else {
             PFP.setVisibility(View.GONE);
         }
         Em = findViewById(R.id.etEmail);
@@ -102,15 +100,15 @@ public class UpdateInfoActivity extends AppCompatActivity {
                     }
                 });
         Submit.setOnClickListener(v -> {
-            if(!checkInputUpdate(Pass.getText().toString(),Em.getText().toString())) {
+            if (!checkInputUpdate(Pass.getText().toString(), Em.getText().toString())) {
                 return;
             }
             String imageBase64 = ImageUtil.toBase64(PFP);
             databaseService.getUser(id, new DatabaseService.DatabaseCallback<User>() {
                 @Override
                 public void onCompleted(User user) {
-                    user.setEmail(Em.getText().toString().trim()+"");
-                    user.setPassword(Pass.getText().toString().trim()+"");
+                    user.setEmail(Em.getText().toString().trim() + "");
+                    user.setPassword(Pass.getText().toString().trim() + "");
                     user.setIm64(imageBase64);
                     databaseService.setUser(user, new DatabaseService.DatabaseCallback<Void>() {
                         @Override
@@ -134,6 +132,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
             });
         });
     }
+
     private void showImageSourceDialog() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_image_source, null);
@@ -156,6 +155,7 @@ public class UpdateInfoActivity extends AppCompatActivity {
 
         bottomSheetDialog.show();
     }
+
     /// select image from gallery
     private void selectImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -167,7 +167,8 @@ public class UpdateInfoActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         captureImageLauncher.launch(takePictureIntent);
     }
-    private boolean checkInputUpdate(String password, String email){
+
+    private boolean checkInputUpdate(String password, String email) {
         if (!Validator.isEmailValid(email)) {
             Em.setError("Invalid email address");
             /// set focus to email field

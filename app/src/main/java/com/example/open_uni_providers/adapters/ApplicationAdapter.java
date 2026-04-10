@@ -3,7 +3,6 @@ package com.example.open_uni_providers.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,20 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Application;
-import com.example.open_uni_providers.models.Tender;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.ViewHolder> {
 
-    public interface OnApplicationClickListener {
-        void onClick(Application application);
-        void onLongClick(Application application);
-    }
-
     private final List<Application> applicationList;
     private final OnApplicationClickListener onApplicationClickListener;
+
     public ApplicationAdapter(@NonNull final OnApplicationClickListener onApplicationClickListener) {
         applicationList = new ArrayList<>();
         this.onApplicationClickListener = onApplicationClickListener;
@@ -71,6 +65,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         applicationList.add(application);
         notifyItemInserted(applicationList.size() - 1);
     }
+
     public void updateApplication(Application application) {
         int index = applicationList.indexOf(application);
         if (index == -1) return;
@@ -85,8 +80,15 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         notifyItemRemoved(index);
     }
 
+    public interface OnApplicationClickListener {
+        void onClick(Application application);
+
+        void onLongClick(Application application);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvFName, tvLName, subject, status;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             subject = itemView.findViewById(R.id.tv_item_app_sub);

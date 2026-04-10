@@ -34,11 +34,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bakbak_one"
+            android:letterSpacing="0.05"
             android:text="TENDER DETAILS"
             android:textColor="#0D47A1"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,12 +56,12 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="24dp"
         app:cardElevation="4dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#BBDEFB"
         app:layout_constraintBottom_toTopOf="@+id/footer_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_bar">
+        app:layout_constraintTop_toBottomOf="@id/header_bar"
+        app:strokeColor="#BBDEFB"
+        app:strokeWidth="1dp">
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -81,9 +81,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-black"
+                    android:textAllCaps="true"
                     android:textColor="#1976D2"
                     android:textSize="18sp"
-                    android:textAllCaps="true"
                     tools:text="PROCUREMENT OF LAPTOPS" />
 
                 <TextView
@@ -185,9 +185,9 @@
             android:text="APPLY"
             android:textAllCaps="true"
             android:textStyle="bold"
+            app:cornerRadius="16dp"
             app:icon="@drawable/submit_logo"
-            app:iconPadding="12dp"
-            app:cornerRadius="16dp" />
+            app:iconPadding="12dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_tender_view_app"
@@ -198,9 +198,9 @@
             android:text="VIEW APPLICATIONS"
             android:textAllCaps="true"
             android:textStyle="bold"
+            app:cornerRadius="16dp"
             app:icon="@drawable/view_application_logo"
-            app:iconPadding="12dp"
-            app:cornerRadius="16dp" />
+            app:iconPadding="12dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

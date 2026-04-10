@@ -1,7 +1,6 @@
 package com.example.open_uni_providers.screens;
 
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +25,7 @@ public class CreateTenderActivity extends AppCompatActivity {
     Button btnContent, btnSubmit;
     ImageButton btnBack;
     DatabaseService databaseService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class CreateTenderActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        String Status="Active";
+        String Status = "Active";
         TenSubject = findViewById(R.id.TenderSubject);
         TenCategory = findViewById(R.id.Category);
         databaseService = DatabaseService.getInstance();
@@ -70,7 +70,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         java.util.Date currentDate = calendar.getTime();
         java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
         String formattedDate = dateFormat.format(currentDate);
-        String publishD =formattedDate;
+        String publishD = formattedDate;
         btnContent = findViewById(R.id.btnContent);
         btnBack = findViewById(R.id.btn_create_tender_back);
         btnBack.setOnClickListener(v -> {
@@ -79,7 +79,7 @@ public class CreateTenderActivity extends AppCompatActivity {
         tenderNum = DatabaseService.getInstance().generateTenderId();
         btnContent.setOnClickListener(v -> {
 
-            if(!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), publishD, TenCategory.getText().toString())){
+            if (!checkInputTender(TenSubject.getText().toString(), ExpD.getText().toString(), publishD, TenCategory.getText().toString())) {
                 return;
             }
             Intent intentContent = new Intent(CreateTenderActivity.this, TenderContentCreateActivity.class);
@@ -93,8 +93,8 @@ public class CreateTenderActivity extends AppCompatActivity {
         });
 
 
-
     }
+
     private boolean checkInputTender(String subject, String ExpDa, String PubDa, String category) {
 
         if (!Validator.isSubjectValid(subject)) {
@@ -121,7 +121,6 @@ public class CreateTenderActivity extends AppCompatActivity {
             ExpD.requestFocus();
             return false;
         }
-
 
 
         Log.d(TAG, "checkInput: Input is valid");

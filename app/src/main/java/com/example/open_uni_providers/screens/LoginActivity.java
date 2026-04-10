@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
@@ -20,11 +21,12 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 import com.example.open_uni_providers.utils.Validator;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText tEmail,tPassword;
     static final String TAG = "LoginActivity";
+    EditText tEmail, tPassword;
     Button BtnSubmitLog;
     ImageButton BtnLogBack;
     DatabaseService databaseService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
         BtnSubmitLog.setOnClickListener(v -> {
-            Log.d(TAG,"onClick: Login Button Clicked");
+            Log.d(TAG, "onClick: Login Button Clicked");
             String email = tEmail.getText().toString();
             String password = tPassword.getText().toString();
             Log.d(TAG, "onClick: Email: " + email);
@@ -59,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
     private boolean checkInput(String email, String password) {
         if (!Validator.isEmailValid(email)) {
             Log.e(TAG, "checkInput: Invalid email address");
@@ -73,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         return true;
 
     }
-    private void loginUser(String email, String password){
+
+    private void loginUser(String email, String password) {
         databaseService.getUserByEmailAndPassword(email, password, new DatabaseService.DatabaseCallback<User>() {
             @Override
             public void onCompleted(User user) {
@@ -92,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(mainIntent);
             }
+
             @Override
             public void onFailed(Exception e) {
 

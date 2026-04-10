@@ -1,13 +1,16 @@
 package com.example.open_uni_providers.adapters;
-import com.example.open_uni_providers.R;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.utils.ImageUtil;
 
@@ -15,14 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
-
-    public interface OnUserClickListener {
-        void onClick(User user);
-        void onLongClick(User user);
-        void onUpdateUserClick(User user);
-        void onDeleteUserClick(User user);
-        void onMakeUserAdminClick(User user);
-    }
 
     private final List<User> userList;
     private final OnUserClickListener onUserClickListener;
@@ -75,6 +70,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         }
     }
 
+    public interface OnUserClickListener {
+        void onClick(User user);
+
+        void onLongClick(User user);
+
+        void onUpdateUserClick(User user);
+
+        void onDeleteUserClick(User user);
+
+        void onMakeUserAdminClick(User user);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvFName, tvLName, tvEmail, tvPassword, tvID, tvAdminBadge, status, im64;
         ImageView profPic;
@@ -104,25 +111,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             profPic.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
             // Masking password for security in the list
             tvPassword.setText("********");
-            if (user.isAdmin()){
+            if (user.isAdmin()) {
                 tvAdminBadge.setVisibility(View.VISIBLE);
                 BtnMakeAdmin.setVisibility(View.GONE);
 
-            }
-            else{
+            } else {
                 tvAdminBadge.setVisibility(View.GONE);
-                if(user.isEmployee()){
+                if (user.isEmployee()) {
                     BtnMakeAdmin.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     BtnMakeAdmin.setVisibility(View.GONE);
                 }
 
             }
-            if(user.isEmployee()){
+            if (user.isEmployee()) {
                 status.setText("Employee");
-            }
-            else{
+            } else {
                 status.setText("Provider");
             }
         }

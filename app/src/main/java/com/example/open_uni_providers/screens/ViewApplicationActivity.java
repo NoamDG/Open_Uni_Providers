@@ -1,6 +1,5 @@
 package com.example.open_uni_providers.screens;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
-import com.example.open_uni_providers.utils.Validator;
 
 public class ViewApplicationActivity extends AppCompatActivity {
     TextView tvContent, fName, lName, Subject, Status;
@@ -27,6 +25,7 @@ public class ViewApplicationActivity extends AppCompatActivity {
     ImageButton BtnBack;
     DatabaseService databaseService;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +54,15 @@ public class ViewApplicationActivity extends AppCompatActivity {
         fName.setText(fname);
         lName = findViewById(R.id.tv_item_user_lname);
         lName.setText(lname);
-        String pWinner = fname +" "+lname;
+        String pWinner = fname + " " + lname;
         BtnBack = findViewById(R.id.btn_application_content_back);
         BtnBack.setOnClickListener(v -> {
             finish();
         });
-        if(status.equals("PENDING") || user.isEmployee()){
+        if (status.equals("PENDING") || user.isEmployee()) {
             BtnAccept.setVisibility(View.VISIBLE);
         }
-        if(status.equals("ACCEPTED") || !user.isEmployee()){
+        if (status.equals("ACCEPTED") || !user.isEmployee()) {
             BtnAccept.setVisibility(View.GONE);
         }
         BtnAccept.setOnClickListener(v -> {
@@ -82,7 +81,7 @@ public class ViewApplicationActivity extends AppCompatActivity {
 
                         }
                     });
-                    if(tender.getTenStat().equals("Active")){
+                    if (tender.getTenStat().equals("Active")) {
                         tender.setTenStat("Inactive");
                     }
                     databaseService.setTender(tender, new DatabaseService.DatabaseCallback<Void>() {

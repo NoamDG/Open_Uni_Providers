@@ -36,11 +36,10 @@ public class SplashActivity extends AppCompatActivity {
                 Thread.sleep(3000);
             } catch (InterruptedException ignored) {
             } finally {
-                if(SharedPreferencesUtil.isUserLoggedIn(this)){
+                if (SharedPreferencesUtil.isUserLoggedIn(this)) {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Intent intent = new Intent(SplashActivity.this, LandingActivity.class);
                     startActivity(intent);
                 }

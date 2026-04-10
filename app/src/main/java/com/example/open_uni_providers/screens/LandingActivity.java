@@ -15,6 +15,7 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
 public class LandingActivity extends AppCompatActivity {
     Button BtnReg, BtnLog, BtnGuest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

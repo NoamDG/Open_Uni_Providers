@@ -1,8 +1,6 @@
 package com.example.open_uni_providers.screens;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -28,7 +26,7 @@ public class ContactActivity extends AppCompatActivity {
         });
         back = findViewById(R.id.btn_contact_back);
         back.setOnClickListener(v -> {
-           finish();
+            finish();
         });
     }
 }

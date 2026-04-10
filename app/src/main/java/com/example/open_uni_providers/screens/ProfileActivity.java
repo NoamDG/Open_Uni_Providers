@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
-import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.ImageUtil;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 
@@ -26,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity {
     User user;
     Button Edit;
     ImageButton Back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +46,9 @@ public class ProfileActivity extends AppCompatActivity {
         Back = findViewById(R.id.btn_user_profile_back);
         Edit = findViewById(R.id.btn_edit_user);
         PFP = findViewById(R.id.ProfIm);
-        if(user.getIm64()!=null){
+        if (user.getIm64() != null) {
             PFP.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
-        }
-        else{
+        } else {
             PFP.setVisibility(View.GONE);
         }
         FName.setText(user.getFirstname());
@@ -57,10 +56,9 @@ public class ProfileActivity extends AppCompatActivity {
         ID.setText(user.getId());
         Email.setText(user.getEmail());
         Password.setText(user.getPassword());
-        if (user.isEmployee()){
+        if (user.isEmployee()) {
             Status.setText("Employee");
-        }
-        else{
+        } else {
             Status.setText("Provider");
         }
         Back.setOnClickListener(v -> {

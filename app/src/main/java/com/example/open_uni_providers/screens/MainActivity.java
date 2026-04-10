@@ -1,19 +1,19 @@
 package com.example.open_uni_providers.screens;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.utils.ImageUtil;
@@ -22,10 +22,11 @@ import com.example.open_uni_providers.utils.SharedPreferencesUtil;
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     User user;
-    Button Name, BtnLogout,BtnUpdate,btnAbout, btn_tender_red, btn_app_red,btn_app_stat, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
+    Button Name, BtnLogout, BtnUpdate, btnAbout, btn_tender_red, btn_app_red, btn_app_stat, btn_general_terms_red, btn_contact_red, btn_admin, BtnLogin, BtnRegister;
     LinearLayout GuestLO, UserLO;
     ImageView PFP;
     String FName, LName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,16 +51,16 @@ public class MainActivity extends AppCompatActivity {
         btnAbout = findViewById(R.id.btn_about_red);
         btn_admin = findViewById(R.id.btn_admin_page);
         btn_admin.setVisibility(View.GONE);
-        GuestLO = (LinearLayout)findViewById(R.id.guest_layout);
-        UserLO = (LinearLayout)findViewById(R.id.user_layout);
+        GuestLO = (LinearLayout) findViewById(R.id.guest_layout);
+        UserLO = (LinearLayout) findViewById(R.id.user_layout);
         GuestLO.setVisibility(View.GONE);
         UserLO.setVisibility(View.GONE);
         btn_app_stat.setVisibility(View.GONE);
-        if(user != null){
+        if (user != null) {
             FName = user.getFirstname();
             LName = user.getLastname();
-            Name.setText(FName+" "+LName);
-            if (user.im64 != null){
+            Name.setText(FName + " " + LName);
+            if (user.im64 != null) {
                 PFP.setImageBitmap(ImageUtil.fromBase64(user.getIm64()));
             }
             UserLO.setVisibility(View.VISIBLE);
@@ -73,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent main_to_admin = new Intent(MainActivity.this, AdminActivity.class);
                     startActivity(main_to_admin);
                 });
-            }
-            else {
+            } else {
                 btn_admin.setVisibility(View.GONE);
             }
             BtnLogout.setOnClickListener(v -> {
@@ -90,22 +90,20 @@ public class MainActivity extends AppCompatActivity {
             });
             if (user.isEmployee()) {
                 btn_app_red.setVisibility(View.VISIBLE);
-            }
-            else{
+            } else {
                 btn_app_stat.setVisibility(View.VISIBLE);
             }
             btn_app_stat.setOnClickListener(v -> {
                 Intent intentStat = new Intent(MainActivity.this, ApplyListActivity.class);
-                intentStat.putExtra("fName" ,user.getFirstname());
-                intentStat.putExtra("lName" ,user.getLastname());
+                intentStat.putExtra("fName", user.getFirstname());
+                intentStat.putExtra("lName", user.getLastname());
                 startActivity(intentStat);
             });
             btn_app_red.setOnClickListener(v -> {
                 Intent intentApp = new Intent(MainActivity.this, ApplyListActivity.class);
                 startActivity(intentApp);
             });
-        }
-        else{
+        } else {
             Name.setText("Guest");
             GuestLO.setVisibility(View.VISIBLE);
             Name.setOnClickListener(v -> {

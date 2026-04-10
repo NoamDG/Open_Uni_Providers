@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,12 +33,13 @@ public class TenderActivity extends AppCompatActivity {
     User user;
     Button BtnCreateTender;
     ImageButton BtnBack;
-    boolean isEmployee=false;
+    boolean isEmployee = false;
     RecyclerView rvList;
     DatabaseService databaseService;
     TenderAdapter tenderAdapter;
     EditText etSearch;
     List<Tender> allTenders = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +52,9 @@ public class TenderActivity extends AppCompatActivity {
         });
         databaseService = DatabaseService.getInstance();
         user = SharedPreferencesUtil.getUser(TenderActivity.this);
-        if(user != null){
+        if (user != null) {
             isEmployee = user.isEmployee();
-        }
-        else{
+        } else {
             isEmployee = false;
         }
         etSearch = findViewById(R.id.et_tender_search);
@@ -72,12 +71,12 @@ public class TenderActivity extends AppCompatActivity {
             @Override
             public void onClick(Tender tender) {
                 Intent viewContent = new Intent(TenderActivity.this, ViewContentActivity.class);
-                viewContent.putExtra("subject" ,tender.getTenSubj());
-                viewContent.putExtra("status" ,tender.getTenStat());
-                viewContent.putExtra("publish" ,tender.getPubDate());
-                viewContent.putExtra("expire" ,tender.getExpDate());
-                viewContent.putExtra("winner" ,tender.getTenWinner());
-                viewContent.putExtra("category" ,tender.getCategory());
+                viewContent.putExtra("subject", tender.getTenSubj());
+                viewContent.putExtra("status", tender.getTenStat());
+                viewContent.putExtra("publish", tender.getPubDate());
+                viewContent.putExtra("expire", tender.getExpDate());
+                viewContent.putExtra("winner", tender.getTenWinner());
+                viewContent.putExtra("category", tender.getCategory());
                 viewContent.putExtra("content", tender.getContent());
                 viewContent.putExtra("id", tender.getId());
                 startActivity(viewContent);
@@ -90,11 +89,10 @@ public class TenderActivity extends AppCompatActivity {
             }
 
             public String StatusLayout(Tender tender) {
-                if(user != null){
-                    if(user.isEmployee()){
+                if (user != null) {
+                    if (user.isEmployee()) {
                         return "Employee";
-                    }
-                    else{
+                    } else {
                         return "Provider";
                     }
                 }
@@ -110,8 +108,7 @@ public class TenderActivity extends AppCompatActivity {
                 Intent list_to_create_tender = new Intent(TenderActivity.this, CreateTenderActivity.class);
                 startActivity(list_to_create_tender);
             });
-        }
-        else {
+        } else {
             BtnCreateTender.setVisibility(View.GONE);  // hides it fully
         }
 
@@ -143,7 +140,7 @@ public class TenderActivity extends AppCompatActivity {
                 Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "tenders:" + allTenders.size());
                 TenderActivity.this.allTenders.clear();
                 TenderActivity.this.allTenders.addAll(allTenders);
-                filterTenders(etSearch.getText().toString()+"");
+                filterTenders(etSearch.getText().toString() + "");
             }
 
             @Override
@@ -155,7 +152,7 @@ public class TenderActivity extends AppCompatActivity {
 
     private void filterTenders(final String text) {
         List<Tender> filterTenders = new ArrayList<>(allTenders);
-        if (text.isEmpty()){
+        if (text.isEmpty()) {
             tenderAdapter.setTenderList(allTenders);
             return;
         }

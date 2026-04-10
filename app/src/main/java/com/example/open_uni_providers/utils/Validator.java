@@ -1,10 +1,12 @@
 package com.example.open_uni_providers.utils;
+
 import android.util.Patterns;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+
 public class Validator {
     /// Check if the email is valid
+    ///
     /// @param email email to validate
     /// @return true if the email is valid, false otherwise
     /// @see Patterns#EMAIL_ADDRESS
@@ -13,33 +15,41 @@ public class Validator {
     }
 
     /// Check if the password is valid
+    ///
     /// @param password password to validate
     /// @return true if the password is valid, false otherwise
     public static boolean isPasswordValid(@Nullable String password) {
         return password != null && password.length() >= 6;
     }
-    public static boolean isIDValid(@Nullable String ID){
+
+    public static boolean isIDValid(@Nullable String ID) {
         return ID.length() == 9;
     }
 
     /// Check if the name is valid
+    ///
     /// @param name name to validate
     /// @return true if the name is valid, false otherwise
     public static boolean isNameValid(@Nullable String name) {
         return name != null && name.length() >= 3;
     }
+
     public static boolean isCheckValid(@Nullable Boolean checked) {
         return checked;
     }
+
     public static boolean isWinnerValid(@Nullable String wName) {
-        return (wName != null && wName.length() >= 3) || wName.length()==0;
+        return (wName != null && wName.length() >= 3) || wName.length() == 0;
     }
+
     public static boolean isSubjectValid(@Nullable String sub) {
         return sub != null && sub.length() > 0;
     }
+
     public static boolean isCategoryValid(@Nullable String cat) {
         return cat != null && cat.length() > 0 && cat.matches("^[a-zA-Z\\s]+$");
     }
+
     public static boolean isDateValid(@Nullable String dateP, @Nullable String dateE) {
         if (dateP == null || dateE == null) return false;
 
@@ -59,8 +69,9 @@ public class Validator {
         }
         return true;
     }
+
     public static boolean isContentValid(@Nullable String cont) {
-        return cont != null && cont.length() >=20;
+        return cont != null && cont.length() >= 20;
     }
 
 

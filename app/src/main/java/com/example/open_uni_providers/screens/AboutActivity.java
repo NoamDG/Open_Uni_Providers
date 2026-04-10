@@ -1,7 +1,6 @@
 package com.example.open_uni_providers.screens;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 

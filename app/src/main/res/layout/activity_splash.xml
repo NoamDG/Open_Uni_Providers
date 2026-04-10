@@ -34,11 +34,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:alpha="0.7"
         android:fontFamily="@font/bakbak_one"
         android:text="TENDER MANAGEMENT SYSTEM"
         android:textColor="#0D47A1"
         android:textSize="14sp"
-        android:alpha="0.7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

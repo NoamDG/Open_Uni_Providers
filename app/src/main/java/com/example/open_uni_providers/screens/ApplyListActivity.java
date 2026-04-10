@@ -3,7 +3,6 @@ package com.example.open_uni_providers.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -16,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.adapters.ApplicationAdapter;
-import com.example.open_uni_providers.adapters.TenderAdapter;
 import com.example.open_uni_providers.models.Application;
-import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.services.DatabaseService;
 
 import java.util.ArrayList;
@@ -77,6 +74,7 @@ public class ApplyListActivity extends AppCompatActivity {
         rvList.setAdapter(appAdapter);
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -86,10 +84,9 @@ public class ApplyListActivity extends AppCompatActivity {
                 Log.d("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", "applications:" + apps.size());
                 allApps.clear();
                 allApps.addAll(apps);
-                if(subject != null){
+                if (subject != null) {
                     filterAppsSubject(subject);
-                }
-                else{
+                } else {
                     filterAppsStatus(fName, lName);
                 }
 
@@ -102,9 +99,10 @@ public class ApplyListActivity extends AppCompatActivity {
             }
         });
     }
+
     private void filterAppsSubject(final String text) {
         List<Application> filterApps = new ArrayList<>(allApps);
-        if (text == null || text.isBlank()){
+        if (text == null || text.isBlank()) {
             appAdapter.setApplicationList(allApps);
             return;
         }
@@ -113,16 +111,17 @@ public class ApplyListActivity extends AppCompatActivity {
         filterApps.removeIf(new Predicate<Application>() {
             @Override
             public boolean test(Application application) {
-                String appSubject = application.getSubject()+"";
+                String appSubject = application.getSubject() + "";
                 return !appSubject.equals(text + "");
             }
         });
 
         appAdapter.setApplicationList(filterApps);
     }
+
     private void filterAppsStatus(final String fName, final String lName) {
         List<Application> filterApps = new ArrayList<>(allApps);
-        if (fName == null || fName.isBlank() || lName == null || lName.isBlank()){
+        if (fName == null || fName.isBlank() || lName == null || lName.isBlank()) {
             appAdapter.setApplicationList(allApps);
             return;
         }
@@ -131,8 +130,8 @@ public class ApplyListActivity extends AppCompatActivity {
         filterApps.removeIf(new Predicate<Application>() {
             @Override
             public boolean test(Application application) {
-                String appfName = application.getfName()+"";
-                String applName = application.getlName()+"";
+                String appfName = application.getfName() + "";
+                String applName = application.getlName() + "";
                 return !(appfName.equals(fName + "") && applName.equals(lName + ""));
             }
         });

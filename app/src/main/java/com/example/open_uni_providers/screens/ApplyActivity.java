@@ -2,7 +2,6 @@ package com.example.open_uni_providers.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.models.Application;
-import com.example.open_uni_providers.models.Tender;
 import com.example.open_uni_providers.models.User;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
@@ -27,6 +26,7 @@ public class ApplyActivity extends AppCompatActivity {
     ImageButton back;
     User user;
     DatabaseService databaseService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,7 @@ public class ApplyActivity extends AppCompatActivity {
         });
 
     }
+
     private boolean checkInputApplication(String Content) {
 
         if (!Validator.isContentValid(Content)) {
@@ -69,9 +70,10 @@ public class ApplyActivity extends AppCompatActivity {
 
         return true;
     }
+
     private void addApplication(String fName, String lName, String content, String subject, String status) {
         String id = databaseService.generateTenderId();
-        Application application= new Application(id, fName, lName, content, subject, status);
+        Application application = new Application(id, fName, lName, content, subject, status);
         createApplicationInDatabase(application);
     }
 

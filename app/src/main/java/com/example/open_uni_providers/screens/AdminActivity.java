@@ -3,7 +3,6 @@ package com.example.open_uni_providers.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -55,9 +54,10 @@ public class AdminActivity extends AppCompatActivity {
             public void onLongClick(User user) {
 
             }
+
             @Override
             public void onMakeUserAdminClick(User user) {
-                if(!user.isAdmin() && user.isEmployee()){
+                if (!user.isAdmin() && user.isEmployee()) {
                     new android.app.AlertDialog.Builder(AdminActivity.this)
                             .setTitle("Make User Admin")
                             .setMessage("Are you sure you want to make " + user.getFirstname() + " " + user.getLastname() + " admin?")
@@ -88,6 +88,7 @@ public class AdminActivity extends AppCompatActivity {
                             .show();
                 }
             }
+
             @Override
             public void onUpdateUserClick(User user) {
                 Intent edit_user = new Intent(AdminActivity.this, AdminEditUserActivity.class);
@@ -98,6 +99,7 @@ public class AdminActivity extends AppCompatActivity {
                 edit_user.putExtra("password", user.getPassword());
                 startActivity(edit_user);
             }
+
             @Override
             public void onDeleteUserClick(User user) {
                 new android.app.AlertDialog.Builder(AdminActivity.this)
@@ -131,6 +133,7 @@ public class AdminActivity extends AppCompatActivity {
         });
         rvList.setAdapter(userAdapter);
     }
+
     @Override
     protected void onResume() {
         super.onResume();

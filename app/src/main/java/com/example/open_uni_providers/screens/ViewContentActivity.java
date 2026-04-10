@@ -22,6 +22,7 @@ public class ViewContentActivity extends AppCompatActivity {
     Button btnApps, BtnApply;
     ImageButton BtnBack;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,22 +58,19 @@ public class ViewContentActivity extends AppCompatActivity {
         tvContent.setText(content);
         BtnApply = findViewById(R.id.btn_tender_apply);
         btnApps = findViewById(R.id.btn_tender_view_app);
-        if(user != null){
-            if(user.isEmployee()){
+        if (user != null) {
+            if (user.isEmployee()) {
                 BtnApply.setVisibility(View.GONE);
                 btnApps.setVisibility(View.VISIBLE);
-            }
-            else{
-                if(status.equals("Active")){
+            } else {
+                if (status.equals("Active")) {
                     BtnApply.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     BtnApply.setVisibility(View.GONE);
                 }
                 btnApps.setVisibility(View.GONE);
             }
-        }
-        else{
+        } else {
             btnApps.setVisibility(View.GONE);
             BtnApply.setVisibility(View.GONE);
         }

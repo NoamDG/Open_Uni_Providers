@@ -18,12 +18,6 @@ import java.util.List;
 
 public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder> {
 
-    public interface OnTenderClickListener {
-        void onClick(Tender Tender);
-        void onLongClick(Tender Tender);
-        String StatusLayout(Tender tender);
-    }
-
     private final List<Tender> tenderList;
     private final OnTenderClickListener onTenderClickListener;
 
@@ -85,9 +79,17 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
         notifyItemRemoved(index);
     }
 
+    public interface OnTenderClickListener {
+        void onClick(Tender Tender);
+
+        void onLongClick(Tender Tender);
+
+        String StatusLayout(Tender tender);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus, tvCategory;
         public Button BtnApply;
+        TextView tvSubject, tvPublish, tvExpire, tvWinner, tvStatus, tvCategory;
         DatabaseService databaseService;
 
         public ViewHolder(@NonNull View itemView) {
@@ -98,7 +100,7 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
             tvWinner = itemView.findViewById(R.id.tv_item_winner);
             tvStatus = itemView.findViewById(R.id.tv_item_status);
             tvCategory = itemView.findViewById(R.id.tv_item_category);
-            databaseService=DatabaseService.getInstance();
+            databaseService = DatabaseService.getInstance();
         }
 
         void setInfo(Tender tender) {
@@ -124,15 +126,14 @@ public class TenderAdapter extends RecyclerView.Adapter<TenderAdapter.ViewHolder
                     tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
                     tvStatus.setText(tender.getTenStat());
                 }
-            }
-            catch (java.text.ParseException e) {
+            } catch (java.text.ParseException e) {
                 tvStatus.setText(tender.getTenStat());
             }
-            if(tender.getTenStat().equals("Inactive")){
+            if (tender.getTenStat().equals("Inactive")) {
                 tvStatus.setText(tender.getTenStat());
                 tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#808080"));
             }
-            if(tender.getTenStat().equals("Active")){
+            if (tender.getTenStat().equals("Active")) {
                 tvStatus.setText(tender.getTenStat());
                 tvStatus.setBackgroundColor(android.graphics.Color.parseColor("#2E7D32"));
             }

@@ -67,6 +67,7 @@ public class Tender {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
+
     public String getCategory() {
         return category;
     }

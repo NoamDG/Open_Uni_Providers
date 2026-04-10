@@ -23,10 +23,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.adapters.ImageSourceAdapter;
 import com.example.open_uni_providers.models.ImageSourceOption;
 import com.example.open_uni_providers.models.User;
-import com.example.open_uni_providers.R;
 import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.ImageUtil;
 import com.example.open_uni_providers.utils.SharedPreferencesUtil;
@@ -39,14 +39,14 @@ public class RegisterActivity extends AppCompatActivity {
     static final String TAG = "RegisterActivity";
 
     EditText tEmail, tPassword, tFName, tLName, tID;
-    private ImageView profImageView;
-    private ActivityResultLauncher<Intent> selectImageLauncher;
-    private ActivityResultLauncher<Intent> captureImageLauncher;
     boolean isEmployee = false;
     Button btnSubmitReg;
     ImageButton btnRegBack;
     DatabaseService databaseService;
     Boolean checked = false;
+    private ImageView profImageView;
+    private ActivityResultLauncher<Intent> selectImageLauncher;
+    private ActivityResultLauncher<Intent> captureImageLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,7 +222,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     /// Register the user
-    private void registerUser(String email, String password, String fName, String lName, String ID, String imageBase64 ) {
+    private void registerUser(String email, String password, String fName, String lName, String ID, String imageBase64) {
         Log.d(TAG, "registerUser: Registering user...");
 
 

@@ -20,11 +20,11 @@ import com.example.open_uni_providers.services.DatabaseService;
 import com.example.open_uni_providers.utils.Validator;
 
 public class TenderContentCreateActivity extends AppCompatActivity {
+    static final String TAG = "TenderContentCreateActivity";
     EditText content;
     Button btnSubmit;
     ImageButton BtnBack;
     DatabaseService databaseService;
-    static final String TAG = "TenderContentCreateActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class TenderContentCreateActivity extends AppCompatActivity {
             startActivity(back_from_create_tender);
         });
     }
+
     private boolean checkInputTenderContent(String Content) {
 
         if (!Validator.isContentValid(Content)) {
@@ -84,6 +85,7 @@ public class TenderContentCreateActivity extends AppCompatActivity {
         Log.d(TAG, "checkInput: Input is valid");
         return true;
     }
+
     private void addTender(String subject, String ExpD, String Status, String Winner, String PubD, String category, String content) {
         Log.d(TAG, "addTender: Adding tender...");
         String id = databaseService.generateTenderId();

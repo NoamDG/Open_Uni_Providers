@@ -1,9 +1,7 @@
 package com.example.open_uni_providers.models;
 
-import androidx.annotation.NonNull;
-
 public class Application {
-    String id, fName, lName, content,subject, status;
+    String id, fName, lName, content, subject, status;
 
     public Application() {
     }
@@ -13,7 +11,7 @@ public class Application {
         this.fName = fName;
         this.lName = lName;
         this.content = content;
-        this.subject=subject;
+        this.subject = subject;
         this.status = status;
     }
 
@@ -28,18 +26,23 @@ public class Application {
     public String getfName() {
         return fName;
     }
+
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public String getlName() {
         return lName;
     }
+
     public String getSubject() {
         return subject;
     }
+
     public String getContent() {
         return content;
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -36,11 +35,11 @@
             android:layout_height="64dp"
             android:layout_marginBottom="12dp"
             android:backgroundTint="#1976D2"
+            android:letterSpacing="0.05"
             android:text="LOGIN"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:cornerRadius="20dp"
             app:icon="@drawable/login_button_logo"
             app:iconGravity="textStart"
@@ -53,35 +52,35 @@
             android:layout_height="64dp"
             android:layout_marginBottom="12dp"
             android:backgroundTint="@android:color/white"
+            android:letterSpacing="0.05"
             android:text="REGISTER"
             android:textColor="#1976D2"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:cornerRadius="20dp"
-            app:strokeColor="#1976D2"
-            app:strokeWidth="2.5dp"
             app:icon="@drawable/register_button_logo"
             app:iconGravity="textStart"
             app:iconPadding="12dp"
-            app:iconTint="#1976D2" />
+            app:iconTint="#1976D2"
+            app:strokeColor="#1976D2"
+            app:strokeWidth="2.5dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_main_guest"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:backgroundTint="@android:color/transparent"
+            android:letterSpacing="0.05"
             android:text="CONTINUE AS GUEST"
             android:textColor="#546E7A"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:elevation="0dp"
-            app:rippleColor="#1A1976D2"
             app:icon="@drawable/guest_logo"
             app:iconGravity="textStart"
             app:iconPadding="12dp"
-            app:iconTint="#546E7A" />
+            app:iconTint="#546E7A"
+            app:rippleColor="#1A1976D2" />
 
     </LinearLayout>
 

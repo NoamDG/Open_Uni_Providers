@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -35,11 +34,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bakbak_one"
+            android:letterSpacing="0.05"
             android:text="CREATE TENDER"
             android:textColor="#0D47A1"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,11 +56,11 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="28dp"
         app:cardElevation="6dp"
-        app:strokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/footer_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_bar">
+        app:layout_constraintTop_toBottomOf="@id/header_bar"
+        app:strokeWidth="0dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -80,12 +79,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tender Subject"
-                    app:boxStrokeColor="#1976D2"
-                    app:hintTextColor="#1976D2"
-                    app:boxCornerRadiusTopStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
                     app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusBottomEnd="16dp">
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="#1976D2"
+                    app:hintTextColor="#1976D2">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/TenderSubject"
@@ -103,12 +102,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Category"
-                    app:boxStrokeColor="#1976D2"
-                    app:hintTextColor="#1976D2"
-                    app:boxCornerRadiusTopStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
                     app:boxCornerRadiusBottomStart="16dp"
-                    app:boxCornerRadiusBottomEnd="16dp">
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="#1976D2"
+                    app:hintTextColor="#1976D2">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/Category"
@@ -126,15 +125,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Expire Date"
-                    app:boxStrokeColor="#1976D2"
-                    app:hintTextColor="#1976D2"
-                    app:boxCornerRadiusTopStart="16dp"
-                    app:boxCornerRadiusTopEnd="16dp"
-                    app:boxCornerRadiusBottomStart="16dp"
                     app:boxCornerRadiusBottomEnd="16dp"
-                    app:endIconMode="custom"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="#1976D2"
                     app:endIconDrawable="@android:drawable/ic_menu_my_calendar"
-                    app:endIconTint="#1976D2">
+                    app:endIconMode="custom"
+                    app:endIconTint="#1976D2"
+                    app:hintTextColor="#1976D2">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/ExpDate"
@@ -165,11 +164,11 @@
             android:id="@+id/btnContent"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:backgroundTint="#1976D2"
+            android:letterSpacing="0.05"
             android:text="PROCEED TO CONTENT"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
-            android:backgroundTint="#1976D2"
             app:cornerRadius="18dp"
             app:icon="@drawable/submit_logo"
             app:iconGravity="textStart"

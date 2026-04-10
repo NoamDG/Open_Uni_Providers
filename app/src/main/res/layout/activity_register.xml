@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -35,11 +34,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bakbak_one"
+            android:letterSpacing="0.05"
             android:text="CREATE ACCOUNT"
             android:textColor="#0D47A1"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:letterSpacing="0.05"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,11 +56,11 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="28dp"
         app:cardElevation="6dp"
-        app:strokeWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_bar">
+        app:layout_constraintTop_toBottomOf="@id/header_bar"
+        app:strokeWidth="0dp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -87,10 +86,10 @@
                         android:layout_height="100dp"
                         android:padding="2dp"
                         android:scaleType="centerCrop"
-                        app:strokeColor="#1976D2"
-                        app:strokeWidth="2dp"
                         app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.MediumComponent"
-                        app:srcCompat="@drawable/image" />
+                        app:srcCompat="@drawable/image"
+                        app:strokeColor="#1976D2"
+                        app:strokeWidth="2dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -98,18 +97,18 @@
                         android:layout_marginTop="8dp"
                         android:text="Tap to add photo"
                         android:textColor="#546E7A"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:letterSpacing="0.1"
                     android:text="FIRST NAME"
                     android:textColor="#546E7A"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/user_FirstName"
@@ -126,11 +125,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.1"
                     android:text="LAST NAME"
                     android:textColor="#546E7A"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/user_LastName"
@@ -147,11 +146,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.1"
                     android:text="EMAIL ADDRESS"
                     android:textColor="#546E7A"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/user_Email"
@@ -168,11 +167,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.1"
                     android:text="PASSWORD"
                     android:textColor="#546E7A"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/user_Password"
@@ -189,11 +188,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.1"
                     android:text="IDENTIFICATION NUMBER"
                     android:textColor="#546E7A"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/user_ID"
@@ -210,19 +209,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
+                    android:letterSpacing="0.1"
                     android:text="SELECT ROLE"
                     android:textColor="#0D47A1"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/radioGroupRole"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="8dp"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/rBtnEmp"
@@ -249,13 +248,13 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#1976D2"
+                    android:letterSpacing="0.05"
                     android:text="SUBMIT REGISTRATION"
                     android:textStyle="bold"
-                    android:letterSpacing="0.05"
+                    app:cornerRadius="16dp"
                     app:icon="@drawable/submit_logo"
                     app:iconGravity="textStart"
-                    app:iconPadding="12dp"
-                    app:cornerRadius="16dp" />
+                    app:iconPadding="12dp" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

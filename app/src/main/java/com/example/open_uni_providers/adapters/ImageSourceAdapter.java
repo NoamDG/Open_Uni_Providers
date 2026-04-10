@@ -19,10 +19,6 @@ import java.util.List;
 public class ImageSourceAdapter extends ArrayAdapter<ImageSourceOption> {
 
 
-    public interface OnImageSourceSelectedListener {
-        void onImageSourceSelected(ImageSourceOption option);
-    }
-
     private final LayoutInflater inflater;
     private final List<ImageSourceOption> objects;
     private OnImageSourceSelectedListener listener;
@@ -34,7 +30,6 @@ public class ImageSourceAdapter extends ArrayAdapter<ImageSourceOption> {
         this.objects = objects;
         this.listener = listener;
     }
-
 
     @Override
     public int getCount() {
@@ -48,7 +43,6 @@ public class ImageSourceAdapter extends ArrayAdapter<ImageSourceOption> {
         /// return the item at the position
         return objects.get(position);
     }
-
 
     @NonNull
     @Override
@@ -80,5 +74,10 @@ public class ImageSourceAdapter extends ArrayAdapter<ImageSourceOption> {
         });
 
         return convertView;
+    }
+
+
+    public interface OnImageSourceSelectedListener {
+        void onImageSourceSelected(ImageSourceOption option);
     }
 }
